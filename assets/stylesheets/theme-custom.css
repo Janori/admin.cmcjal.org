@@ -1,0 +1,40 @@
+/* Add here all your CSS customizations */
+
+.no-radius-top {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.no-radius-bottom {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.img-profile{
+	width: 159px;
+	height: 159px;
+}
+.event-bg {
+	margin-top: 2px;
+	padding: 3px;
+}
+time {
+    text-decoration: underline;
+    font-style: italic;
+    float: inherit;
+    color: white!important;
+}
+tr.file-manager-row {
+    cursor: pointer;
+}
+.i-file-manager {
+    font-size: 18px;
+    color: #737373;
+    margin-right: 5px;
+}
+i.fa.fa-trash-o.i-delete-file {
+    color: #FB6464;
+}
+img.img-responsive.file-manager-img-preview {
+    margin: auto;
+}
