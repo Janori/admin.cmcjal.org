@@ -9,6 +9,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('events', 'HomeController@showEvents');
     Route::get('files', 'HomeController@showFiles');
 
+Route::get('/gallery', function() {
+    return view('gallery');
+});	
 
 
     Route::post('uploadfile', 'HomeController@uploadFile');
@@ -34,6 +37,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
 });
+
 
 /*Route::get('calendar', function () {
     return view('calendar');

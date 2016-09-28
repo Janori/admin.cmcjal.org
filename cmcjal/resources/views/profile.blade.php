@@ -38,7 +38,7 @@
                         </div>
                         <div class="thumb-info-title">
                             <span class="thumb-info-inner">{{ $user->name }}</span>
-                            <span class="thumb-info-type">{{ $user->type  }}</span>
+                            
                         </div>
                     </div>
                     @if ($user->id == Auth::user()->id)
@@ -54,8 +54,12 @@
                     @endif
                     <hr class="dotted short">
 
-                    <h6 class="text-muted">Informacion</h6>
-                        
+                    <h6 class="text-muted">Información</h6>
+                        <span class="thumb-info-type">{{ $user->type  }}</span>
+                        <br>
+                        <span class="thumb-info-type">{{ $user->title  }}</span>
+                        <br>
+                        <small>Miembro desde {{substr($user->created_at, 0, 10) }}</small>
                     <hr class="dotted short">
 
                    <!--<div class="social-icons-list">
@@ -75,7 +79,10 @@
                         <a href="#overview" data-toggle="tab" aria-expanded="true">Informacion</a>
                     </li>
                     <li class="">
-                        <a href="#edit" data-toggle="tab" aria-expanded="false">Edit</a>
+                        <a href="#edit" data-toggle="tab" aria-expanded="false">Editar</a>
+                    </li>
+                    <li class="">
+                        <a href="#files" data-toggle="tab" aria-expanded="false">Archivos</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -156,6 +163,13 @@
 
                         </div>
                     @endif
+                    <div id="files" class="tab-pane">
+
+
+                        <h4 class="mb-xlg">aRCHIVOS</h4>
+
+
+                    </div>
                 </div>
             </div>
         </div>
