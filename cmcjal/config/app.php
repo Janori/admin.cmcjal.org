@@ -157,6 +157,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         /*
          * Custom Service Providers...
          */
@@ -208,6 +209,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Calendar'  => 'MaddHatter\LaravelFullcalendar\Facades\Calendar',
         'PhpWord'  => 'PhpWord\PhpWord.php',
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

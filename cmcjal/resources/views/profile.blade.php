@@ -34,10 +34,12 @@
                 <div class="panel-body">
                     <div class="thumb-info mb-md">
                         <div class="preview-area">
-                            <img src="{{ '/cmcjal/storage/pictures/profile/'.$user->image}}" class="img-profile rounded img-responsive" alt="John Doe">
+                            <center>
+                                <img src="{{ asset('/cmcjal/storage/pictures/profile/'. ($user->image ?$user->image : 'default.png')) }}" class="img-profile rounded" alt="{{ $user->name }}">
+                            </center>
                         </div>
                         <div class="thumb-info-title">
-                            <span class="thumb-info-inner">{{ $user->name }}</span>
+                            <span class="thumb-info-inner small"><small>{{ $user->name . ' ' . $user->lastname }}</small></span>
                             
                         </div>
                     </div>
@@ -46,9 +48,10 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <div class="">
-                                    <input id="image-input" class="form-control no-radius-bottom" type="file" name="picture" required>
+                                    <a href="#" class="btn btn-lg btn-default no-radius-bottom" style="width: 100%;" onclick="clickOriginalForm(); return false;">Agregar Imagen</a>
+                                    <input id="image-input" class="form-control no-radius-bottom hidden" type="file" name="picture" required>
                                 </div>
-                                <button type="submit" class="btn btn-xs btn-block btn-primary no-radius-top">Cambiar Imagen</button>
+                                <button type="submit" class="btn btn-lg btn-block btn-primary no-radius-top">Subir Imagen</button>
                             </div>
                         </form>
                     @endif
@@ -166,7 +169,7 @@
                     <div id="files" class="tab-pane">
 
 
-                        <h4 class="mb-xlg">aRCHIVOS</h4>
+                        <h4 class="mb-xlg">Archivos subidos</h4>
 
 
                     </div>
@@ -223,6 +226,12 @@
             $('.preview-area').append('<img class="img-profile img-preview rounded img-responsive" src="' + objectUrl + '" />');
             window.URL.revokeObjectURL(fileList[i]);
           }
-  } 
+  }
+
+
+  function clickOriginalForm()
+  {
+    $('#image-input').click();
+  };
 </script>
 @endsection

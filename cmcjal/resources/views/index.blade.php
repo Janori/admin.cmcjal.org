@@ -6,10 +6,10 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">Welcome</div>
+        <div class="panel-heading"><h3><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;¡BIENVENIDO!</h3></div>
 
         <div class="panel-body">
-            Your Application's Landing Page.
+            A su panel de adiministrador <b>CMCJAL</b>.
         </div>
     </div>
 @endsection

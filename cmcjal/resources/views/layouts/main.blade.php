@@ -18,27 +18,27 @@
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
         <!-- Vendor CSS -->
-        <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
-        <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+        {!! Html::style(asset('assets/vendor/bootstrap/css/bootstrap.css')) !!}
+        {!! Html::style(asset('assets/vendor/font-awesome/css/font-awesome.css')) !!}
+        {!! Html::style(asset('assets/vendor/magnific-popup/magnific-popup.css')) !!}
+        {!! Html::style(asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css')) !!}
 
         <!-- Specific Page Vendor CSS -->
-        <link rel="stylesheet" href="assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
-        <link rel="stylesheet" href="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
-        <link rel="stylesheet" href="assets/vendor/morris/morris.css" />
+        {!! Html::style(asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css')) !!}
+        {!! Html::style(asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css')) !!}
+        {!! Html::style(asset('assets/vendor/morris/morris.css')) !!}
 
         <!-- Theme CSS -->
-        <link rel="stylesheet" href="assets/stylesheets/theme.css" />
+        {!! Html::style(asset('assets/stylesheets/theme.css')) !!}
 
         <!-- Skin CSS -->
-        <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
+        {!! Html::style(asset('assets/stylesheets/skins/default.css')) !!}
 
         <!-- Theme Custom CSS -->
-        <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
+        {!! Html::style(asset('assets/stylesheets/theme-custom.css')) !!}
 
         <!-- Head Libs -->
-        <script src="assets/vendor/modernizr/modernizr.js"></script>
+        {!! Html::script(asset('assets/vendor/modernizr/modernizr.js')) !!}
 
     </head>
     <body>
@@ -48,7 +48,7 @@
             <header class="header">
                 <div class="logo-container">
                     <a href="../" class="logo">
-                        <img src="assets/images/logo.png" height="35" alt="Porto Admin" />
+                        <img src="{{ asset('assets/images/logo.png') }}" height="35" alt="Porto Admin" />
                     </a>
                     <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                         <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -65,7 +65,7 @@
                     <div id="userbox" class="userbox">
                         <a href="#" data-toggle="dropdown">
                             <figure class="profile-picture">
-                                <img src="{{ 'cmcjal/storage/pictures/profile/'.Auth::user()->image}}" alt="{{ Auth::user()->name }}" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                                <img src="{{ asset('cmcjal/storage/pictures/profile/'. (Auth::user()->image ? Auth::user()->image : 'default.png')) }}" alt="{{ Auth::user()->name }}" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
                             </figure>
                             <div class="profile-info" data-lock-name="{{Auth::user()->name}}" data-lock-email="{{Auth::user()->email}}">
                                 <span class="name">{{Auth::user()->name}}</span>
@@ -100,7 +100,7 @@
                 
                     <div class="sidebar-header">
                         <div class="sidebar-title">
-                            Navigation
+                            Navegación
                         </div>
                         <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
                             <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -112,14 +112,14 @@
                             <nav id="menu" class="nav-main" role="navigation">
                                 <ul class="nav nav-main">
                                     <li class="nav-active">
-                                        <a href="/">
+                                        <a href="{{ url('/') }}">
                                             <i class="fa fa-home" aria-hidden="true"></i>
                                             <span>Panel de Control</span>
                                         </a>
-                                            <a href="/events"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a>
-                                            <a href="/files"><i class="fa fa-folder-open" aria-hidden="true"></i> Articulos Destacados</a>
+                                            <a href="{{ url('/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a>
+                                            <a href="{{ url('/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> Articulos Destacados</a>
 
-                                            <a href="/gallery"><i class="fa fa-picture-o" aria-hidden="true"></i> Galeria</a>                                    </li>
+                                            <a href="{{ url('/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> Galeria</a>                                    </li>
                                 </ul>
                             </nav>
                         </div> 
@@ -200,60 +200,72 @@
         </section>
 
         <!-- Vendor -->
-        <script src="assets/vendor/jquery/jquery.js"></script>
-        <script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
-        <script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
-        <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-        <script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
-        <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+        {!! Html::script(asset('assets/vendor/jquery/jquery.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js')) !!}
+        {!! Html::script(asset('assets/vendor/bootstrap/js/bootstrap.js')) !!}
+        {!! Html::script(asset('assets/vendor/nanoscroller/nanoscroller.js')) !!}
+        {!! Html::script(asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')) !!}
+        {!! Html::script(asset('assets/vendor/magnific-popup/magnific-popup.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery-placeholder/jquery.placeholder.js')) !!}
         
         <!-- Specific Page Vendor -->
-        <script src="assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
-        <script src="assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
-        <script src="assets/vendor/jquery-appear/jquery.appear.js"></script>
-        <script src="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-        <script src="assets/vendor/jquery-easypiechart/jquery.easypiechart.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.js"></script>
-        <script src="assets/vendor/flot-tooltip/jquery.flot.tooltip.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.pie.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.categories.js"></script>
-        <script src="assets/vendor/flot/jquery.flot.resize.js"></script>
-        <script src="assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
-        <script src="assets/vendor/raphael/raphael.js"></script>
-        <script src="assets/vendor/morris/morris.js"></script>
-        <script src="assets/vendor/gauge/gauge.js"></script>
-        <script src="assets/vendor/snap-svg/snap.svg.js"></script>
-        <script src="assets/vendor/liquid-meter/liquid.meter.js"></script>
-        <script src="assets/vendor/jqvmap/jquery.vmap.js"></script>
-        <script src="assets/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
-        <script src="assets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
-        <script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>
-        <script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>
-        <script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>
-        <script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
-        <script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
-        <script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+        {!! Html::script(asset('assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery-appear/jquery.appear.js')) !!}
+        {!! Html::script(asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery-easypiechart/jquery.easypiechart.js')) !!}
+        {!! Html::script(asset('assets/vendor/flot/jquery.flot.js')) !!}
+        {!! Html::script(asset('assets/vendor/flot-tooltip/jquery.flot.tooltip.js')) !!}
+        {!! Html::script(asset('assets/vendor/flot/jquery.flot.pie.js')) !!}
+        {!! Html::script(asset('assets/vendor/flot/jquery.flot.categories.js')) !!}
+        {!! Html::script(asset('assets/vendor/flot/jquery.flot.resize.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery-sparkline/jquery.sparkline.js')) !!}
+        {!! Html::script(asset('assets/vendor/raphael/raphael.js')) !!}
+        {!! Html::script(asset('assets/vendor/morris/morris.js')) !!}
+        {!! Html::script(asset('assets/vendor/gauge/gauge.js')) !!}
+        {!! Html::script(asset('assets/vendor/snap-svg/snap.svg.js')) !!}
+        {!! Html::script(asset('assets/vendor/liquid-meter/liquid.meter.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/jquery.vmap.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/data/jquery.vmap.sampledata.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/maps/jquery.vmap.world.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js')) !!}
+        {!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js')) !!}
         
-        <script src="assets/vendor/pnotify/pnotify.custom.js"></script>
+        {!! Html::script(asset('assets/vendor/pnotify/pnotify.custom.js')) !!}
         <!-- Theme Base, Components and Settings -->
-        <script src="assets/javascripts/theme.js"></script>
+        {!! Html::script(asset('assets/javascripts/theme.js')) !!}
         
         <!-- Theme Custom -->
-        <script src="assets/javascripts/theme.custom.js"></script>
+        {!! Html::script(asset('assets/javascripts/theme.custom.js')) !!}
         
         <!-- Theme Initialization Files -->
-        <script src="assets/javascripts/theme.init.js"></script>
+        {!! Html::script(asset('assets/javascripts/theme.init.js')) !!}
 
 
         <!-- Examples -->
-        {{-- <script src="assets/javascripts/dashboard/examples.dashboard.js"></script> --}}
+        {!! Html::script(asset('assets/javascripts/dashboard/examples.dashboard.js')) !!} 
 
-        <script src="assets/javascripts/moment.min.js"></script>
-        <script src="assets/javascripts/fullcalendar.min.js"></script>
-        <script src="assets/javascripts/lang-all.js"></script>
-        <link rel="stylesheet" href="assets/stylesheets/fullcalendar.min.css"/>
+        {!! Html::script(asset('assets/javascripts/moment.min.js')) !!}
+        {!! Html::script(asset('assets/javascripts/fullcalendar.min.js')) !!}
+        {!! Html::script(asset('assets/javascripts/lang-all.js')) !!}
+        {!! Html::style(asset('assets/stylesheets/fullcalendar.min.css')) !!}
+
         @yield('scripts')
+
+        <script type="text/javascript">
+
+        $(document).ready(function()
+        {
+            $('a.sidebar-right-toggle').css({
+                'opacity' : 0,
+                'visibility' : 'hidden' });
+        });
+        
+        </script>
         {!! $calendar->script() !!}
         <style>
             div.fc-mini #calendar {
