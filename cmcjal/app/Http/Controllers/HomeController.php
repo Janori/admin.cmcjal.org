@@ -30,46 +30,6 @@ class HomeController extends Controller
      * @return Response
      */
 
-    public function calendar() {
-        date_default_timezone_set('America/Mexico_City');
-        $today = date( 'Y-m-d H:i:s', mktime(0,0,0,date('n'),1,date('Y')));
-
-        $events = EventCalendar::all();
-        foreach ($events as $e) {
-            if ($e->status == "aceptada") {
-                if ($e->end < $today) {
-                    $calendar = \Calendar::addEvent($e,['color' => 'gray', 'borderColor' => 'gray'])
-                    ->setOptions([ //set fullcalendar options
-                        'firstDay' => 0
-                    ]); 
-                } else {
-                    $calendar = \Calendar::addEvent($e,['color' => '#5cb85c', 'borderColor' => '#4cae4c'])
-                    ->setOptions([ //set fullcalendar options
-                        'firstDay' => 0,
-
-                    ]);
-                }
-
-            } elseif ($e->status == "cancelada") {
-                $calendar = \Calendar::addEvent($e,['color' => '#d9534f', 'borderColor' => '#d43f3a'])
-                ->setOptions([ //set fullcalendar options
-                    'firstDay' => 0
-                ]); 
-            }
-            elseif ($e->status == "pendiente") {
-                $calendar = \Calendar::addEvent($e,['color' => '#f0ad4e', 'borderColor' => '#eea236'])
-                ->setOptions([ //set fullcalendar options
-                    'firstDay' => 0
-                ]); 
-            } elseif ($e->status == "reagendar") {
-                $calendar = \Calendar::addEvent($e,['color' => '#337ab7', 'borderColor' => '#2e6da4'])
-                ->setOptions([ //set fullcalendar options
-                    'firstDay' => 0
-                ]); 
-            }
-        }
-        return $calendar;
-    }
 
     public function index()
     {
@@ -85,9 +45,7 @@ class HomeController extends Controller
 
     public function showEvents() {
         $user = Auth::user();
-        $events = EventCalendar::where(DB::raw('MONTH(start)'), '=', date('n') )->get();
-        $calendar2 = $this->calendar();
-        return view('calendar', compact('calendar2'))->with('user', $user)->with('events', $events);
+        return view('calendar')->with('user', $user);
     }
 
     public function formatBytes($size, $precision = 2) {

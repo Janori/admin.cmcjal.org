@@ -9,6 +9,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('events', 'HomeController@showEvents');
     Route::get('files', 'HomeController@showFiles');
 
+    // Calendar Route's
+    Route::get('cargaEventos{id?}','CalendarController@index');
+	Route::post('guardaEventos', array('as' => 'guardaEventos','uses' => 'CalendarController@create'));
+	Route::post('actualizaEventos','CalendarController@update');
+	Route::post('eliminaEvento','CalendarController@delete');
+
 Route::get('/gallery', function() {
     return view('gallery');
 });	

@@ -40,6 +40,9 @@
         <!-- Head Libs -->
         {!! Html::script(asset('assets/vendor/modernizr/modernizr.js')) !!}
 
+        <!-- AdminLTE Skins -->
+        {{!! Html::style(asset('assets/vendor/admin-lte/AdminLTE.min.css')) !!}
+
     </head>
     <body>
         <section class="body">
@@ -161,37 +164,9 @@
                                 <hr>
                                 <!--<div data-plugin-datepicker data-plugin-skin="dark" ></div>-->
                                 <div class="fc-mini">
-                                    {!! $calendar->calendar() !!}
                                 </div>
                                 <a href="{{ url('/events') }}"><button class="btn btn-xs btn-default btn-block"> Ver calendario completo </button></a>
-                                <hr>
-                                <ul>
-                                    <li>
-                                        @foreach ($events as $event)
-                                            @if($event->status == "aceptada")
-                                                <div class="event-bg bg-success">
-                                                    <time datetime="2014-04-19T00:00+00:00">{{ $event->start }}</time>
-                                                    <span>{{ $event->title }}</span>
-                                                </div>
-                                            @elseif($event->status == "cancelada")
-                                                <div class="event-bg bg-danger">
-                                                    <time datetime="2014-04-19T00:00+00:00">{{ $event->start }}</time>
-                                                    <span>{{ $event->title }}</span>
-                                                </div>
-                                            @elseif($event->status == "pendiente")
-                                                <div class="event-bg bg-warning">
-                                                    <time datetime="2014-04-19T00:00+00:00">{{ $event->start }}</time>
-                                                    <span>{{ $event->title }}</span>
-                                                </div>
-                                            @elseif($event->status == "reagendar")
-                                                <div class="event-bg bg-primary">
-                                                    <time datetime="2014-04-19T00:00+00:00">{{ $event->start }}</time>
-                                                    <span>{{ $event->title }}</span>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </li>
-                                </ul>
+                                <hr>                                
                             </div>
                         </div>
                     </div>
@@ -247,13 +222,19 @@
 
 
         <!-- Examples -->
-        {!! Html::script(asset('assets/javascripts/dashboard/examples.dashboard.js')) !!} 
+        {{--{!! Html::script(asset('assets/javascripts/dashboard/examples.dashboard.js')) !!} --}}
 
         {!! Html::script(asset('assets/javascripts/moment.min.js')) !!}
-        {!! Html::script(asset('assets/javascripts/fullcalendar.min.js')) !!}
-        {!! Html::script(asset('assets/javascripts/lang-all.js')) !!}
-        {!! Html::style(asset('assets/stylesheets/fullcalendar.min.css')) !!}
+        {{-- {!! Html::script(asset('assets/javascripts/fullcalendar.min.js')) !!} --}}
+        {{-- {!! Html::script(asset('assets/javascripts/lang-all.js')) !!} --}}
+        {{-- {!! Html::style(asset('assets/stylesheets/fullcalendar.min.css')) !!} --}}
 
+        <!-- Full Calendar -->
+        {!! Html::style(asset('assets/javascripts/fullcalendar/fullcalendar.min.css')) !!}
+        {{-- {!! Html::style(asset('assets/javascripts/fullcalendar/fullcalendar.print.css')) !!} --}}
+        {!! Html::script(asset('assets/javascripts/fullcalendar/fullcalendar.min.js')) !!}
+        {!! Html::script(asset('assets/javascripts/fullcalendar/lang/es.js')) !!}
+        
         @yield('scripts')
 
         <script type="text/javascript">
@@ -266,7 +247,6 @@
         });
         
         </script>
-        {!! $calendar->script() !!}
         <style>
             div.fc-mini #calendar {
                 width: 200px;

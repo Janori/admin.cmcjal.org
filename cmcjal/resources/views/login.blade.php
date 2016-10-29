@@ -90,7 +90,7 @@
 								<div class="col-sm-8">
 									<div class="checkbox-custom checkbox-default">
 										<input id="RememberMe" name="remember" type="checkbox"/>
-										<label for="RememberMe">Remember Me</label>
+										<label for="RememberMe">Recuerdame</label>
 									</div>
 								</div>
 								<div class="col-sm-4 text-right">
@@ -114,7 +114,7 @@
 					</div>
 				</div>
 
-				<p class="text-center text-muted mt-md mb-md">&copy; Copyright 2014. All Rights Reserved.</p>
+				<p class="text-center text-muted mt-md mb-md">&copy; Copyright 2016. Todos los derechos reservados.</p>
 			</div>
 		</section>
 		<!-- end: page -->
