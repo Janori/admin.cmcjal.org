@@ -13,7 +13,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('cargaEventos{id?}','CalendarController@index');
 	Route::post('guardaEventos', array('as' => 'guardaEventos','uses' => 'CalendarController@create'));
 	Route::post('actualizaEventos','CalendarController@update');
-	Route::post('eliminaEvento','CalendarController@delete');
+	Route::delete('events/delete/{id}','CalendarController@delete');
+	Route::get('events/{id}', 'CalendarController@show');
+	Route::put('events/edit/{id}', 'CalendarController@edit');
 
 Route::get('/gallery', function() {
     return view('gallery');

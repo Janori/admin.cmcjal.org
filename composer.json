@@ -1,5 +1,4 @@
 {
     "require": {
-        "maddhatter/laravel-fullcalendar": "^1.2"
     }
 }

@@ -24,7 +24,7 @@
         {!! Html::style(asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css')) !!}
 
         <!-- Specific Page Vendor CSS -->
-        {!! Html::style(asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css')) !!}
+        {!! Html::style(asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.12.0.css')) !!}
         {!! Html::style(asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css')) !!}
         {!! Html::style(asset('assets/vendor/morris/morris.css')) !!}
 
@@ -42,6 +42,7 @@
 
         <!-- AdminLTE Skins -->
         {{!! Html::style(asset('assets/vendor/admin-lte/AdminLTE.min.css')) !!}
+        {{!! Html::style(asset('assets/stylesheets/custom.css')) !!}
 
     </head>
     <body>
@@ -175,7 +176,7 @@
         </section>
 
         <!-- Vendor -->
-        {!! Html::script(asset('assets/vendor/jquery/jquery.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery/jquery-3.1.0.min.js')) !!}
         {!! Html::script(asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js')) !!}
         {!! Html::script(asset('assets/vendor/bootstrap/js/bootstrap.js')) !!}
         {!! Html::script(asset('assets/vendor/nanoscroller/nanoscroller.js')) !!}
@@ -184,7 +185,7 @@
         {!! Html::script(asset('assets/vendor/jquery-placeholder/jquery.placeholder.js')) !!}
         
         <!-- Specific Page Vendor -->
-        {!! Html::script(asset('assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery-ui/js/jquery-ui-1.12.0.js')) !!}
         {!! Html::script(asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js')) !!}
         {!! Html::script(asset('assets/vendor/jquery-appear/jquery.appear.js')) !!}
         {!! Html::script(asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js')) !!}
@@ -224,16 +225,12 @@
         <!-- Examples -->
         {{--{!! Html::script(asset('assets/javascripts/dashboard/examples.dashboard.js')) !!} --}}
 
-        {!! Html::script(asset('assets/javascripts/moment.min.js')) !!}
-        {{-- {!! Html::script(asset('assets/javascripts/fullcalendar.min.js')) !!} --}}
-        {{-- {!! Html::script(asset('assets/javascripts/lang-all.js')) !!} --}}
-        {{-- {!! Html::style(asset('assets/stylesheets/fullcalendar.min.css')) !!} --}}
 
         <!-- Full Calendar -->
+        {!! Html::script(asset('assets/javascripts/moment.min.js')) !!}
         {!! Html::style(asset('assets/javascripts/fullcalendar/fullcalendar.min.css')) !!}
-        {{-- {!! Html::style(asset('assets/javascripts/fullcalendar/fullcalendar.print.css')) !!} --}}
         {!! Html::script(asset('assets/javascripts/fullcalendar/fullcalendar.min.js')) !!}
-        {!! Html::script(asset('assets/javascripts/fullcalendar/lang/es.js')) !!}
+        {!! Html::script(asset('assets/javascripts/fullcalendar/locale/es.js')) !!}
         
         @yield('scripts')
 
