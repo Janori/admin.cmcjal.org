@@ -35,6 +35,8 @@
 
 		</header>
 		<div class="panel-body">
+			@if(Auth::user()->type == "Administrador")
+
 			{!! Form::model($event, ['url' => ['events/edit', $event->id], 'method' => 'PUT']) !!}
 				<div class="form-group">
 					{!! Form::label('titulo', 'Titulo del evento:') !!}
@@ -80,6 +82,26 @@
 			{!! Form::open(['url' => ['events/delete', $event->id],  'method' => 'DELETE']) !!}
 				{!! Form::submit('Eliminar Evento', ['class' => 'btn btn-danger hidden']) !!}
 			{!! Form::close()!!}
+
+			@else
+				<div class="form-group">
+					{!! Form::label('titulo', 'Titulo del evento:') !!}
+					<div class="box-body">
+						{!! Form::label('titulo', $event->title)!!}	
+					</div>
+
+					<div class="form-group">
+					{!! Form::label('color', 'Color del evento:') !!}	
+
+					<div class="box-body">
+						<p style="font-size: 1.5em;	">Color seleccionado: &nbsp;
+							{!! Form::button('Evento', ['id' => 'color-picker', 'class' => 'btn btn-primary btn-flat', 'style' => 'border-radius: 5px;width: 120px;border-color: ' . $event->color . ';background-color: ' . $event->color]) !!}
+						</p>
+					</div>
+				</div>
+				</div>
+
+			@endif
 		</div>
 	</section>
 @endsection

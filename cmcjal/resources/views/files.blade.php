@@ -25,25 +25,25 @@
 
                 </div>
 
-                    <h2 class="panel-title">Subir Archivo</h2>
+                    <h2 class="panel-title"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Subir Archivo</h2>
 
             </header>
             <div class="panel-body">
                 <form enctype="multipart/form-data" method="POST" action="{{url('uploadfile')}}" >
                     <input type="hidden" name="_token" value="{{ csrf_token()}}">
                     <input required class="" type="file" name="file">
-                    <button class="btn btn-dark pull-right" type="submit">Subir</button>
+                    <button class="btn btn-primary btn-lg pull-right" type="submit">Subir</button>
                 </form>
             </div>
         </section>
 
     @endif
-    <section class="panel panel-dark">
+    <section class="panel panel-default">
         <header class="panel-heading">
             <div class="panel-actions">
             </div>
 
-            <h2 class="panel-title">Archivos</h2>
+            <h2 class="panel-title"><li class="fa fa-file" aria-hidden="true"></li>&nbsp;Lista de archivos</h2>
 
         </header>
 
@@ -53,7 +53,7 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th></th>
+                            <th>Acciones</th>
                             <th>Peso</th>
                         </tr>
                     </thead>
@@ -83,11 +83,11 @@
                                 <td class="actions-hover actions-fade">
                                     <a href="{{ url('download/'.$files[$i]['name'])}}"><button class="btn btn-sm btn-default"><i class="fa fa-download"></i></button></a>
                                     @if($files[$i]['extension'] == 'txt' || $files[$i]['extension'] == 'gif' || $files[$i]['extension'] == 'jpg' ||$files[$i]['extension'] == 'jpeg' || $files[$i]['extension'] == 'png')
-                                        <a class="mb-xs mt-xs mr-xs modal-with-zoom-anim" href="#modal{{$files[$i]['id']}}">
+                                        <a class="mb-xs mt-xs mr-xs modal-with-zoom-anim preview" href="#" data-file="{{ asset('cmcjal/public/files/' . $files[$i]["name"])  }}" data-extension="{{ $files[$i]['extension'] }}">
                                             <button class="btn btn-sm btn-default"><i class="fa fa-eye"></i></button>
                                         </a>
                                     @elseif($files[$i]['extension'] == 'pdf')
-                                        <a  target="_blank" href="/cmcjal/public/files/{{$files[$i]['name']}}">
+                                        <a  target="_blank" href="{{ asset("/cmcjal/public/files/". $files[$i]['name']) }}">
                                             <button class="btn btn-sm btn-default"><i class="fa fa-eye"></i></button>
                                         </a>
                                     @endif
@@ -100,46 +100,26 @@
                                 </td>
 
                             </tr>
-
-
-                            @if($files[$i]['extension'] == 'txt' || $files[$i]['extension'] == 'gif' || $files[$i]['extension'] == 'jpg' ||$files[$i]['extension'] == 'jpeg' || $files[$i]['extension'] == 'png')
-
-
-
-                                <div id="modal{{$files[$i]['id']}}" class="zoom-anim-dialog modal-block modal-block-primary mfp-hide">
-                                    <section class="panel">
-                                        <header class="panel-heading">
-                                            <h2 class="panel-title">{{$files[$i]['name']}}</h2>
-                                        </header>
-                                        <div class="panel-body">
-                                            <div class="modal-wrapper">
-
-                                                <div class="modal-text">
-                                                    @if($files[$i]['extension'] == 'txt')
-                                                        <p>{{$files[$i]['content']}}</p>
-                                                    @elseif($files[$i]['extension'] == 'gif' || $files[$i]['extension'] == 'jpg' ||$files[$i]['extension'] == 'jpeg' || $files[$i]['extension'] == 'png')
-                                                        <img class="img-responsive file-manager-img-preview" src="/cmcjal/public/files/{{$files[$i]['name']}}">
-
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <footer class="panel-footer">
-                                            <div class="row">
-                                                <div class="col-md-12 text-right">
-                                                    <button class="btn btn-dark modal-confirm"><i class="fa fa-times"></i></button>
-                                                </div>
-                                            </div>
-                                        </footer>
-                                    </section>
-                                </div>
-                            @endif
                         @endfor
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
+
+    <!-- Modal for see the images -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">              
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <p class="text-preview">
+            </p>
+            <img src="" class="image-preview img-responsive" style="width: 100%;max-height: 500px;" >
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
 
 
@@ -161,12 +141,65 @@
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
     </div>
 </header>
+{!! Form::open(['url' => ['previewFile'], 'method' => 'POST', 'id' =>'form-files']) !!}
+{!! Form::close() !!}
 @endsection
 
 
 <!--JS Scripts-->
 @section('scripts')
-    <script src="/assets/javascripts/ui-elements/examples.modals.js"></script>
-    
-    <!--AJAX-->
+    {{-- <script src="/assets/javascripts/ui-elements/examples.modals.js"></script> --}}
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        $('.preview').click(function(event)
+        {
+            event.preventDefault();
+
+            crsfToken = document.getElementsByName("_token")[0].value;
+
+            var data = {
+                src : $(this).data('file')
+            }
+
+            var filename = data.src.split('/');
+
+            data.filename = filename[filename.length - 1];
+
+            $('.text-preview').hide();
+            $('.text-preview').html('');
+            $('.image-preview').hide();
+
+            if($(this).data('extension') == "txt")
+            {            
+                $.ajax({
+                    url: 'previewFile',
+                    type: 'POST',
+                    headers: {
+                        "X-CSRF-TOKEN": crsfToken
+                    },
+                    data: data,
+                })
+                .done(function(response) {
+                    $('.text-preview').show();
+                    $('.text-preview').append($('<p>' , {
+                        'class' : 'title-preview',
+                        'html'  : data.filename
+                    }));
+
+                    $('<p class="content-preview">' + response.content + '</p>').appendTo('.text-preview');
+                    $('#modal').modal('show'); 
+
+                })
+            }
+            else
+            {
+                $('.image-preview').show();
+                $('.image-preview').attr('src', data.src);
+                $('#modal').modal('show'); 
+            }
+            
+        });
+    });
+</script>
 @endsection

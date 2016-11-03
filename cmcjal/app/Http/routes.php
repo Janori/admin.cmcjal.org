@@ -4,10 +4,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
     Route::get('/', 'HomeController@index');
     Route::get('calendar', 'CalendarController@show');
-    Route::get('user/{id}',  ['uses' => 'HomeController@userProfile']);
+    //Route::get('user/{id}',  ['uses' => 'HomeController@userProfile']);
     Route::post('uploadpicture/{id}', ['uses' => 'UserController@uploadPicture']);
     Route::get('events', 'HomeController@showEvents');
     Route::get('files', 'HomeController@showFiles');
+    Route::post('previewFile', 'HomeController@getPreview');
 
     // Calendar Route's
     Route::get('cargaEventos{id?}','CalendarController@index');
@@ -16,6 +17,8 @@ Route::group(['middleware' => 'web'], function () {
 	Route::delete('events/delete/{id}','CalendarController@delete');
 	Route::get('events/{id}', 'CalendarController@show');
 	Route::put('events/edit/{id}', 'CalendarController@edit');
+
+	Route::resource('users', 'UserController');
 
 Route::get('/gallery', function() {
     return view('gallery');

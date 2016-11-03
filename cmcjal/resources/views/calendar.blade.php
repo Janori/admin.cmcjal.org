@@ -25,10 +25,20 @@
 	<!-- start: page -->
 	<div class="panel panel-default">
 	<!-- Content Header (Page header) -->
+	<header class="panel-heading">
+			<div class="panel-actions">
+				<a href="#" class="fa fa-caret-down"></a>
+
+			</div>
+
+				<h2 class="panel-title"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;Eventos</h2>
+
+		</header>
 	<div class="panel-body">
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
+		@if(Auth::user()->type == "Administrador")
 		<div class="col-md-3">
 			<div class="box box-solid">
 			<div class="box-header with-border">
@@ -90,8 +100,9 @@
 			</div>
 			</div>
 		</div>
+		@endif
 		<!-- /.col -->
-		<div class="col-md-9">
+		<div class="{{ Auth::user()->type == "Administrador" ? 'col-md-9' : 'col-md-10 col-md-offset-1' }}">
 			<div class="box box-primary">
 			<div class="box-body no-padding">
 				<!-- THE CALENDAR -->

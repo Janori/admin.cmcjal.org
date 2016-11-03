@@ -82,7 +82,7 @@
                             <ul class="list-unstyled">
                                 <li class="divider"></li>
                                 <li>
-                                    <a role="menuitem" tabindex="-1" href="{{ url('user').'/'.Auth::user()->id }}"><i class="fa fa-user"></i> My Profile</a>
+                                    <a role="menuitem" tabindex="-1" href="{{ url('users').'/'.Auth::user()->id }}"><i class="fa fa-user"></i> My Profile</a>
                                 </li>
                                 <li>
                                     <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
@@ -120,6 +120,11 @@
                                             <i class="fa fa-home" aria-hidden="true"></i>
                                             <span>Panel de Control</span>
                                         </a>
+                                            @if(Auth::user()->type == "Administrador")
+                                            
+                                            <a href="{{ url('/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> Usuarios</a>
+                                            
+                                            @endif
                                             <a href="{{ url('/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a>
                                             <a href="{{ url('/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> Articulos Destacados</a>
 

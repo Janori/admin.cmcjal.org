@@ -19,7 +19,7 @@
 
                 </div>
 
-                    <h2 class="panel-title">Galeria</h2>
+                    <h2 class="panel-title"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Galeria</h2>
 
             </header>
             <div class="panel-body">

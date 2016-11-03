@@ -38,12 +38,12 @@
                                 <img src="{{ asset('/cmcjal/storage/pictures/profile/'. ($user->image ?$user->image : 'default.png')) }}" class="img-profile rounded" alt="{{ $user->name }}">
                             </center>
                         </div>
-                        <div class="thumb-info-title">
+                        {{-- <div class="thumb-info-title">
                             <span class="thumb-info-inner small"><small>{{ $user->name . ' ' . $user->lastname }}</small></span>
                             
-                        </div>
+                        </div> --}}
                     </div>
-                    @if ($user->id == Auth::user()->id)
+                    @if ($id == Auth::user()->id)
                         <form method="POST" action="{{ url('uploadpicture/'.$user->id) }}" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
@@ -79,10 +79,7 @@
             <div class="tabs">
                 <ul class="nav nav-tabs tabs-primary">
                     <li class="active">
-                        <a href="#overview" data-toggle="tab" aria-expanded="true">Informacion</a>
-                    </li>
-                    <li class="">
-                        <a href="#edit" data-toggle="tab" aria-expanded="false">Editar</a>
+                        <a href="#" data-toggle="tab" aria-expanded="false">Informacion</a>
                     </li>
                     <li class="">
                         <a href="#files" data-toggle="tab" aria-expanded="false">Archivos</a>
@@ -90,28 +87,7 @@
                 </ul>
                 <div class="tab-content">
                     <div id="overview" class="tab-pane active">
-
-
-                        <h4 class="mb-xlg">Eventos</h4>
-
-                        <div class="timeline timeline-simple mt-xlg mb-md">
-                            <div class="tm-body">
-                                <ol class="tm-items">
-                                    @foreach($events as $event)
-                                    <li>
-                                        <div class="tm-box">
-                                            <p class="text-muted mb-none">{{ $event->start }}</p>
-                                            <p>
-                                                {{ $event->title }}
-                                            </p>
-                                        </div>
-                                    </li>
-                                    @endforeach
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    @if ($user->id == Auth::user()->id)
+                    @if ($id == Auth::user()->id)
                         <div id="edit" class="tab-pane">
 
                             <form class="form-horizontal" method="get">
@@ -165,7 +141,23 @@
                             </form>
 
                         </div>
+                    @else
+                        <div id="edit" class="tab-pane">
+                            <h4 class="mb-xlg">Informacion del usuario</h4>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileFirstName">Nombre</label>
+                                    <label class="col-md-8" for="profileFirstName">{{ $user->name }}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileLastName">Apellidos</label>
+                                    <label class="col-md-8" for="profileLastName">{{ $user->lastname }}</label>
+                                </div>
+                            </fieldset>
+                            <hr class="dotted tall">
+                        </div>
                     @endif
+                    </div>
                     <div id="files" class="tab-pane">
 
 
@@ -179,15 +171,11 @@
         <div class="col-md-12 col-lg-3">
 
             <h4 class="mb-md">Status</h4>
-            <ul class="simple-card-list mb-xlg">
-                @if ($user->status == "Pagado")
-                    <li class="success">
-                        {{ $user->status }}
-                    </li>
+            <ul class="simple-card-list" style="width: 50%;">
+                @if ($user->status == "1")
+                    <li class="success" style="text-align: center;"> Activo </li>
                 @else
-                    <li class="danger">
-                        {{ $user->status }}
-                    </li>
+                    <li class="danger" style="text-align: center;"> Inactivo </li>
                 @endif
                 
             </ul>
@@ -215,6 +203,8 @@
 
 @section('scripts')
 <script>
+if($('#image-input').length)
+{
   var inputLocalFont = document.getElementById("image-input");
   inputLocalFont.addEventListener("change",previewImages,false);
   function previewImages(){
@@ -233,5 +223,6 @@
   {
     $('#image-input').click();
   };
+}
 </script>
 @endsection

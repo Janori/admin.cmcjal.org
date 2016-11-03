@@ -33,14 +33,7 @@ class HomeController extends Controller
 
     public function index()
     {
-
         return view('index');
-    }
-
-    public function userProfile() {
-        $user = Auth::user();
-        $events = EventCalendar::where(DB::raw('MONTH(start)'), '=', date('n') )->get();
-        return view('profile')->with('user', $user)->with('events', $events);
     }
 
     public function showEvents() {
@@ -115,9 +108,10 @@ class HomeController extends Controller
         }
     }
 
+    public function getPreview(Request $request)
+    {
+        $file = Storage::disk('publicfiles')->get($request->input('filename'));
 
-    public function userCRUD() {
-        
+        return response()->json(['content' => $file]);
     }
-
 }
