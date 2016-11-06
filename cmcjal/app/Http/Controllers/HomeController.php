@@ -75,9 +75,6 @@ class HomeController extends Controller
             $files_array[$key]['size'] = $this->formatBytes(Storage::disk('publicfiles')->size($file));
             $files_array[$key]['extension'] = File::extension($file);
             $files_array[$key]['id'] = $key;
-            if(File::extension($file) == 'txt') {
-                $files_array[$key]['content'] =  Storage::disk('publicfiles')->get($file);
-            }
           }
 
         return view('files')->with('files', $files_array);
@@ -113,5 +110,19 @@ class HomeController extends Controller
         $file = Storage::disk('publicfiles')->get($request->input('filename'));
 
         return response()->json(['content' => $file]);
+    }
+
+    public function getEventSerach(Request $request)
+    {
+        $term = strtolower($request->input('term'));
+
+        $result = DB::table("event_calendars")->select('id', 'title')->where('title', 'LIKE', '%'. $term . '%')->groupBy('title')->take(10)->get();
+        
+        $data = array(); 
+        foreach ($result as $r)
+            $data[] = array('label' => $r->title, 'value' => $r->id);
+
+        //if()
+        return response()->json($data);
     }
 }

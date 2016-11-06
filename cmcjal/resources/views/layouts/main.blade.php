@@ -123,6 +123,7 @@
                                             @if(Auth::user()->type == "Administrador")
                                             
                                             <a href="{{ url('/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> Usuarios</a>
+                                            <a href="{{ url('/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> Asistencia</a>
                                             
                                             @endif
                                             <a href="{{ url('/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a>
@@ -181,7 +182,7 @@
         </section>
 
         <!-- Vendor -->
-        {!! Html::script(asset('assets/vendor/jquery/jquery-3.1.0.min.js')) !!}
+        {!! Html::script(asset('assets/vendor/jquery/jquery.js')) !!}
         {!! Html::script(asset('assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js')) !!}
         {!! Html::script(asset('assets/vendor/bootstrap/js/bootstrap.js')) !!}
         {!! Html::script(asset('assets/vendor/nanoscroller/nanoscroller.js')) !!}

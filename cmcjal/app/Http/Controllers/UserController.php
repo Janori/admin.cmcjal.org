@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\EventCalendar;
 use Validator;
 use Redirect; 
 use Session;
@@ -21,7 +22,8 @@ class UserController extends Controller
 	 */
 	public function index()
 	{
-		$users = User::All();
+		
+		$users = User::all();
 		return view('user.index', compact('users'));
 	}
 
@@ -135,9 +137,9 @@ class UserController extends Controller
 			$user->image = $filename;
 			$user->save();
 			Session::flash('alert-success', 'Cambiaste tu imagen de perfil'); 
-			return Redirect::to('/user/'.$user->id);
+			return Redirect::to('/users/'.$user->id);
 		} else {
-		  return Redirect::to('/user/'.$user->id)->withInput()->withErrors($validator);
+		  return Redirect::to('/users/'.$user->id)->withInput()->withErrors($validator);
 		}
 	}
 }

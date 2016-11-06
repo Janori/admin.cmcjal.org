@@ -48,7 +48,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <div class="">
-                                    <a href="#" class="btn btn-lg btn-default no-radius-bottom" style="width: 100%;" onclick="clickOriginalForm(); return false;">Agregar Imagen</a>
+                                    <a href="#" class="btn btn-lg btn-default no-radius-bottom" style="width: 100%;" onclick="clickOriginalForm(); return false;">Cambiar Imagen</a>
                                     <input id="image-input" class="form-control no-radius-bottom hidden" type="file" name="picture" required>
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-block btn-primary no-radius-top">Subir Imagen</button>
@@ -79,7 +79,7 @@
             <div class="tabs">
                 <ul class="nav nav-tabs tabs-primary">
                     <li class="active">
-                        <a href="#" data-toggle="tab" aria-expanded="false">Informacion</a>
+                        <a href="#overview" data-toggle="tab" aria-expanded="true">Informacion</a>
                     </li>
                     <li class="">
                         <a href="#files" data-toggle="tab" aria-expanded="false">Archivos</a>
@@ -179,6 +179,9 @@
                 @endif
                 
             </ul>
+
+            <h4 style=""> Creditos obtenidos: </h4>
+            <a href="#" class="credits-user">{{ $user->credits }}</a>
     </div>
 @endsection
 

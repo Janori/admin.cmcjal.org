@@ -19,11 +19,15 @@ Route::group(['middleware' => 'web'], function () {
 	Route::put('events/edit/{id}', 'CalendarController@edit');
 
 	Route::resource('users', 'UserController');
+	Route::resource('thumbnail', 'ThumbnailController',
+					['only' => ['store', 'destroy']]);
 
-Route::get('/gallery', function() {
-    return view('gallery');
-});	
+	Route::get('gallery', 'ThumbnailController@index');	
+	Route::resource('assistance', 'AssistanceController');
+	Route::post('getEventInfo/{id}', 'AssistanceController@getEventInfo');
 
+	// Helper routes for assistance module
+	Route::get('eventSearch', 'HomeController@getEventSerach');
 
     Route::post('uploadfile', 'HomeController@uploadFile');
     //DOWNLOAD
@@ -48,8 +52,3 @@ Route::get('/gallery', function() {
 
 
 });
-
-
-/*Route::get('calendar', function () {
-    return view('calendar');
-});*/
