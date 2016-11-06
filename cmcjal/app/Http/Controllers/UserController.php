@@ -9,40 +9,15 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\EventCalendar;
 use Validator;
-use Redirect; 
-use Session;
 use File;
 
 class UserController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index()
-	{
-		
-		$users = User::all();
-		return view('user.index', compact('users'));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function create()
 	{
 		return view('user.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
 	public function store(Request $request)
 	{
 		User::create([
@@ -57,37 +32,18 @@ class UserController extends Controller
 		return redirect('users');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function show($id)
 	{
 		$user = \App\User::find($id);
-        return view('profile')->with('user', $user)->with('id', $id);
+		return view('profile')->with('user', $user)->with('id', $id);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function edit($id)
 	{
 		$user = User::find($id);
 		return view('user.edit', ['user' => $user]);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function update(Request $request, $id)
 	{
 		$user = User::find($id);
@@ -97,12 +53,6 @@ class UserController extends Controller
 		return redirect('users');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function destroy($id)
 	{
 		$user = User::find($id);
@@ -123,9 +73,8 @@ class UserController extends Controller
 			'picture.max' => 'Tu imagen no puede pesar mas de 3MB.'
 		];
 
-		if($user->image != "") {
+		if($user->image != "")
 			File::delete(storage_path().'/pictures/profile/'.$user->id.".".$picture->getClientOriginalExtension());
-		}
 
 		$validator = Validator::make($request->all(), $rules, $messages);
 		if($validator->passes()){
@@ -138,8 +87,8 @@ class UserController extends Controller
 			$user->save();
 			Session::flash('alert-success', 'Cambiaste tu imagen de perfil'); 
 			return Redirect::to('/users/'.$user->id);
-		} else {
-		  return Redirect::to('/users/'.$user->id)->withInput()->withErrors($validator);
 		}
+		else
+			return Redirect::to('/users/'.$user->id)->withInput()->withErrors($validator);
 	}
 }

@@ -67,9 +67,14 @@ return [
             'root'   => public_path(),
         ],
 
-        'publicfiles' => [
+        'files' => [
             'driver' => 'local',
             'root'   => public_path('files'),
+        ],
+
+        'thumbnails' => [
+            'driver' => 'local',
+            'root'   => public_path('thumbnails'),
         ],
 
         's3' => [

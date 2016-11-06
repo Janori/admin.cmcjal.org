@@ -9,7 +9,7 @@ use App\EventCalendar;
 
 class CalendarController extends Controller
 {
-	public function index()
+	public function getEvents()
 	{
 		$data 	= array(); //declaramos un array principal que va contener los datos
 		$id 	= EventCalendar::all()->lists('id'); //listamos todos los id de los eventos

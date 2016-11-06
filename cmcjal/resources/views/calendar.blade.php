@@ -95,7 +95,7 @@
 				<!-- /btn-group -->
 				</div><br/><br/>
 				<!-- /input-group -->
-				{!! Form::open(['route' => ['guardaEventos'], 'method' => 'POST', 'id' =>'form-calendario']) !!}
+				{!! Form::open(['route' => ['events.create'], 'method' => 'POST', 'id' =>'form-calendario']) !!}
 				{!! Form::close() !!}
 			</div>
 			</div>
@@ -184,7 +184,7 @@
 			droppable: true,	// this allows things to be dropped onto the calendar !!!
 			eventLimit: true, // allow "more" link when too many events
 			navLinks: true,
-			events: { url : 'cargaEventos'},
+			events: { url : '{{ route('events.all') }}'},
 			timeFormat: 'h:mm',
 			drop : function(date, jsEvent, ui, resourceId)
 			{
@@ -207,7 +207,7 @@
 				crsfToken = document.getElementsByName("_token")[0].value;
 
 				$.ajax({
-					url: 'guardaEventos',
+					url: 'events.create',
 					data: data,
 					type: "POST",
 					headers: {
@@ -241,7 +241,7 @@
 				crsfToken = document.getElementsByName("_token")[0].value;
 
 				$.ajax({
-					url: 'actualizaEventos',
+					url: '{{ route('events.update') }}',
 					data: data,
 					type: "POST",
 					headers: {
@@ -274,7 +274,7 @@
 				crsfToken = document.getElementsByName("_token")[0].value;
 
 				$.ajax({  
-					url: 'actualizaEventos',
+					url: '{{ route('events.update') }}',
 					data: data,
 					type: "POST",
 					headers: {

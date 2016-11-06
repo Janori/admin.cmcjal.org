@@ -37,7 +37,7 @@
 		<div class="panel-body">
 			@if(Auth::user()->type == "Administrador")
 
-			{!! Form::model($event, ['url' => ['events/edit', $event->id], 'method' => 'PUT']) !!}
+			{!! Form::model($event, ['route' => ['events.edit', $event->id], 'method' => 'PUT']) !!}
 				<div class="form-group">
 					{!! Form::label('titulo', 'Titulo del evento:') !!}
 					<div class="box-body">
@@ -79,7 +79,7 @@
 				</div>
 			{!! Form::close() !!}
 
-			{!! Form::open(['url' => ['events/delete', $event->id],  'method' => 'DELETE']) !!}
+			{!! Form::open(['route' => ['events.delete', $event->id],  'method' => 'DELETE']) !!}
 				{!! Form::submit('Eliminar Evento', ['class' => 'btn btn-danger hidden']) !!}
 			{!! Form::close()!!}
 

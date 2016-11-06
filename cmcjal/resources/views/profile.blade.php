@@ -44,7 +44,7 @@
                         </div> --}}
                     </div>
                     @if ($id == Auth::user()->id)
-                        <form method="POST" action="{{ url('uploadpicture/'.$user->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('users.picture', ['id' => $user->id]) }}" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <div class="">

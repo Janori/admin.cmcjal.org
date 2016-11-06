@@ -29,7 +29,7 @@
 
             </header>
             <div class="panel-body">
-                <form enctype="multipart/form-data" method="POST" action="{{url('uploadfile')}}" >
+                <form enctype="multipart/form-data" method="POST" action="{{ route('files.upload')}} " >
                     <input type="hidden" name="_token" value="{{ csrf_token()}}">
                     <input required class="" type="file" name="file">
                     <button class="btn btn-primary btn-lg pull-right" type="submit">Subir</button>
@@ -78,10 +78,10 @@
                                     @else 
                                        <i class="fa fa-file-o i-file-manager"></i>
                                     @endif
-                                    <a href="{{ url('download/'.$files[$i]['name'])}}">{{$files[$i]['name']}}</a>
+                                    <a href="{{ route('files.download', ['filename' => $files[$i]['name']]) }}">{{ $files[$i]['name'] }}</a>
                                 </td>
                                 <td class="actions-hover actions-fade">
-                                    <a href="{{ url('download/'.$files[$i]['name'])}}"><button class="btn btn-sm btn-default"><i class="fa fa-download"></i></button></a>
+                                    <a href="{{ route('files.download', ['filename' => $files[$i]['name']]) }}"><button class="btn btn-sm btn-default"><i class="fa fa-download"></i></button></a>
                                     @if($files[$i]['extension'] == 'txt' || $files[$i]['extension'] == 'gif' || $files[$i]['extension'] == 'jpg' ||$files[$i]['extension'] == 'jpeg' || $files[$i]['extension'] == 'png')
                                         <a class="mb-xs mt-xs mr-xs modal-with-zoom-anim preview" href="#" data-file="{{ asset('cmcjal/public/files/' . $files[$i]["name"])  }}" data-extension="{{ $files[$i]['extension'] }}">
                                             <button class="btn btn-sm btn-default"><i class="fa fa-eye"></i></button>
@@ -92,7 +92,7 @@
                                         </a>
                                     @endif
                                     @if(Auth::user()->type == "Administrador")
-                                        <a onclick="return confirm('Estas seguro?')" href="{{ url('deletefile/'.$files[$i]['name'])}}"><button class="btn btn-sm btn-default"><i class="fa fa-trash-o i-delete-file"></i></button></a>
+                                        <a onclick="return confirm('Estas seguro?')" href="{{ route('files.delete', ['filename' => $files[$i]['name']]) }}"><button class="btn btn-sm btn-default"><i class="fa fa-trash-o i-delete-file"></i></button></a>
                                     @endif
                                 </td>
                                 <td>
@@ -173,7 +173,7 @@
             if($(this).data('extension') == "txt")
             {            
                 $.ajax({
-                    url: 'previewFile',
+                    url: '{{ route('files.preview') }}',
                     type: 'POST',
                     headers: {
                         "X-CSRF-TOKEN": crsfToken

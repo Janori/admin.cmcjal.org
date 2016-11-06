@@ -62,7 +62,7 @@
 			</div>
 		</div>
 	</section>
-	{!! Form::open(['url' => ['getEventInfo', '_EVENT_ID'], 'method' => 'POST', 'id' => 'event-info'])!!}
+	{!! Form::open(['route' => ['assistance.event', '_EVENT_ID'], 'method' => 'POST', 'id' => 'event-info'])!!}
 	{!! Form::close() !!}
 @endsection
 
@@ -73,7 +73,7 @@ $(document).ready(function()
 {
 
 	$('#search-event').autocomplete({
-		source : '{{ url('eventSearch') }}',
+		source : '{{ route('assistance.search') }}',
 		minLength : 3,
 		select: function( event, ui )
 			{

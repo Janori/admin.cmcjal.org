@@ -6,28 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Thumbnail;
+use Illuminate\Support\Facades\Storage;
 use File;
 
 class ThumbnailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $thumbnails = Thumbnail::all();
-        return view('gallery', compact('thumbnails'));
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $file   = $request->file('image');
@@ -47,23 +30,18 @@ class ThumbnailController extends Controller
         return redirect('gallery');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
+        $file = Thumbnail::find($id);
         Thumbnail::destroy($id);
 
-        return 'Imagen eliminada correctamente';
+        $filename = $file->image;
+
+        if(Storage::disk('thumbnails')->exists($filename)) {
+            Storage::disk('thumbnails')->delete($filename);
+            Storage::disk('thumbnails')->delete('thumb_' . $filename);
+            return 'Imagen eliminada correctamente';
+        }
+
     }
 }
