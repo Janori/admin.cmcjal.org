@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -90,5 +91,27 @@ class UserController extends Controller
 		}
 		else
 			return Redirect::to('/users/'.$user->id)->withInput()->withErrors($validator);
+	}
+
+	public function assistance($id)
+	{
+		$query = DB::table('assistance')->select('event_id')->where('user_id', $id)->get();
+
+		$values = array();
+		foreach ($query as $q)
+			$values[] = $q->event_id;
+
+		$sub   = DB::table('event_calendars')->select('title', 'start')->whereIn('id', $values)->get();
+
+		$data = array();
+
+		foreach($sub as $s)
+			$data[] = array(
+					'date' 			=> date('Y-m-d', strtotime($s->start)),
+					'title' 		=> $s->title,
+					'certificate' 	=> null
+				);
+
+		return response()->json($data);
 	}
 }

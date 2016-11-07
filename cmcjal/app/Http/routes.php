@@ -23,7 +23,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::put('/{id}', 'UserController@update')->name('users.update');
 		Route::delete('/{id}', 'UserController@destroy')->name('users.destroy');
 		Route::post('picture/{id}', 'UserController@uploadPicture')->name('users.picture');
-
+		Route::post('assistance/{id}', 'UserController@assistance')->name('users.assistance');
 	});
 
 	// File Controller routes

@@ -38,7 +38,7 @@ class HomeController extends Controller
 	public function users()
 	{
 		
-		$users = User::all();
+		$users = User::paginate(2);
 		return view('user.index', compact('users'));
 	}
 

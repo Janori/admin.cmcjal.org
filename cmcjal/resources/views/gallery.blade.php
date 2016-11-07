@@ -87,6 +87,7 @@
 			</div>
 		</div>
 	</section>
+	{!! Html::style(asset('assets/stylesheets/magic-popup.css')) !!}
 @endsection
 
 
