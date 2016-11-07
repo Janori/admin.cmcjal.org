@@ -44,13 +44,19 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('/{id}', 'CalendarController@show')->name('events.show');
 	});
 
+	// Thumbnail Controller routes
 	Route::group(['prefix' => 'gallery'], function() {
 		Route::post('/', 'ThumbnailController@store')->name('thumbnail.store');
 		Route::delete('/{id}', 'ThumbnailController@destroy')->name('thumbnail.destroy');
 	});
 
+	// Assistance Controller routes
 	Route::group(['prefix' => 'assistance'], function() {
-		Route::get('event', 'AssistanceController@getEventSerach')->name('assistance.search');
-		Route::post('event/{id}', 'AssistanceController@getEventInfo')->name('assistance.event');
+		Route::get('event', 'AssistanceController@getEventSerach')->name('assistance.event');
+		Route::post('event/{id}', 'AssistanceController@getEventInfo')->name('assistance.events');
+		Route::post('users/{id}', 'AssistanceController@getUsersInfo')->name('assistance.users');
+		Route::get('users', 'AssistanceController@getUserSearch')->name('assistance.user');
+		Route::post('/', 'AssistanceController@store')->name('assistance.store');
+		Route::post('detete', 'AssistanceController@delete')->name('assistance.delete');
 	});
 });

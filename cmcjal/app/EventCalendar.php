@@ -12,6 +12,6 @@ class EventCalendar extends Model
 
     public function users()
     {
-    	return $this->belongsToMany('App\User', 'assistance', 'id', 'id');
+    	return $this->belongsToMany('App\User', 'assistance', 'event_id', 'user_id');
     }
 }

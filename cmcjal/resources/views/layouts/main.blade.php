@@ -122,14 +122,14 @@
                                         </a>
                                             @if(Auth::user()->type == "Administrador")
                                             
-                                            <a href="{{ url('/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> Usuarios</a>
-                                            <a href="{{ url('/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> Asistencia</a>
+                                            <a href="{{ url('/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Usuarios</span></a>
+                                            <a href="{{ url('/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> <span>Asistencia</span></a>
                                             
                                             @endif
-                                            <a href="{{ url('/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a>
-                                            <a href="{{ url('/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> Articulos Destacados</a>
+                                            <a href="{{ url('/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendario</span></a>
+                                            <a href="{{ url('/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> <span>Articulos</span> Destacados</a>
 
-                                            <a href="{{ url('/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> Galeria</a>                                    </li>
+                                            <a href="{{ url('/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> <span>Galeria</span></a>                                    </li>
                                 </ul>
                             </nav>
                         </div> 
