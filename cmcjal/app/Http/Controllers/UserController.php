@@ -11,6 +11,8 @@ use App\User;
 use App\EventCalendar;
 use Validator;
 use File;
+use Session;
+use Redirect;
 
 class UserController extends Controller
 {

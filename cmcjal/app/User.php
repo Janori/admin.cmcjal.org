@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\EventCalendar', 'assistance', 'user_id', 'event_id');
     }
+
+    public function questions()
+    {
+        return $this->hasMany('App\Question', 'id', 'id');
+    }
 }

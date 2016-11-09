@@ -59,4 +59,13 @@ Route::group(['middleware' => 'web'], function () {
 		Route::post('/', 'AssistanceController@store')->name('assistance.store');
 		Route::post('detete', 'AssistanceController@delete')->name('assistance.delete');
 	});
+
+	Route::group(['prefix' => 'exam'], function() {
+	    Route::get('create/{event_id}', 'ExamController@create')->name('exam.create');
+	    Route::post('/', 'ExamController@store')->name('exam.store');
+	    Route::post('question', 'ExamController@storeQuestion')->name('question.store');
+	    Route::put('question/{id}', 'ExamController@updateQuestion')->name('question.update');
+	    Route::get('question/{id}', 'ExamController@showQuestion')->name('question.show');
+	    Route::delete('question/{id}', 'ExamController@deleteQuestion')->name('question.delete');
+	});
 });

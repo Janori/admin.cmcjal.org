@@ -73,6 +73,18 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					{!! Form::label('exam', 'Examen:') !!}	
+					<div class="box-body">
+						@if($event->exam == NULL)
+							<a href="{{ route('exam.create', ['event_id' => $event->id]) }}" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar Examen</a>
+						@else
+							{!! Form::label('exam', $event->exam) !!} &nbsp;
+							<a href="#" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Editar Examen</a>
+						@endif
+					</div>
+				</div>
+
 				<div class="box-body pull-right">
 					{!! Form::submit('Guardar Cambios', ['class' => 'btn btn-primary', 'style' => 'margin-right: 15px;']) !!}
 					{!! Html::link('#', 'Eliminar Evento', ['id' => 'delete-button', 'class' => 'btn btn-danger']) !!}
@@ -98,6 +110,17 @@
 							{!! Form::button('Evento', ['id' => 'color-picker', 'class' => 'btn btn-primary btn-flat', 'style' => 'border-radius: 5px;width: 120px;border-color: ' . $event->color . ';background-color: ' . $event->color]) !!}
 						</p>
 					</div>
+					
+					<div class="form-group">
+						{!! Form::label('exam', 'Examen:') !!}	
+						<div class="box-body">
+							@if($event->exam != NULL)
+								{!! Form::label('exam', $event->exam) !!} &nbsp;
+								<a href="#" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Realizar Examen</a>
+							@endif
+						</div>
+					</div>
+
 				</div>
 				</div>
 
