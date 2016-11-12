@@ -10,3 +10,4 @@ Homestead.json
 *.zip
 /assets
 /cmcjal/vendor
+sftp-config.json
