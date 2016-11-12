@@ -95,8 +95,6 @@
 				<!-- /btn-group -->
 				</div><br/><br/>
 				<!-- /input-group -->
-				{!! Form::open(['route' => ['events.create'], 'method' => 'POST', 'id' =>'form-calendario']) !!}
-				{!! Form::close() !!}
 			</div>
 			</div>
 		</div>
@@ -207,7 +205,7 @@
 				crsfToken = document.getElementsByName("_token")[0].value;
 
 				$.ajax({
-					url: 'events.create',
+					url: '{{ route('events.create') }} ',
 					data: data,
 					type: "POST",
 					headers: {

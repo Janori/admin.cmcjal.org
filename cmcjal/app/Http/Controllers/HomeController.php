@@ -55,6 +55,8 @@ class HomeController extends Controller
 	}
 	
 	public function files() {
+
+		$files_array = array();
 		
 		$files =  Storage::disk('files')->files();
 		  foreach ($files as $key => $file) {
