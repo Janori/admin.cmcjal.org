@@ -108,7 +108,7 @@
                                 <a class="btn btn-twitter mb-md ml-xs mr-xs">Connect with <i class="fa fa-twitter"></i></a>
                             </div>-->
 
-                            <p class="text-center">No tienes cuenta? Registrate <a href="/register">Registrate!</a>
+                            {{-- <p class="text-center">No tienes cuenta? Registrate <a href="/register">Registrate!</a> --}}
 
                         </form>
                     </div>

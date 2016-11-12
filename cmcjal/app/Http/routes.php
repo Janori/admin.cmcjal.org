@@ -12,6 +12,8 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('events', 'HomeController@events');
 	Route::get('files', 'HomeController@files');
 	Route::get('gallery', 'HomeController@gallery');
+	Route::post('lockscreen', 'HomeController@lockscreen');
+	Route::post('lock', 'HomeController@lock');
 
 	// User Controller routes
 	Route::group(['prefix' => 'users'], function()

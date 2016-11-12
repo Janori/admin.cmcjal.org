@@ -69,9 +69,9 @@
                     <div id="userbox" class="userbox">
                         <a href="#" data-toggle="dropdown">
                             <figure class="profile-picture">
-                                <img src="{{ asset('cmcjal/storage/pictures/profile/'. (Auth::user()->image ? Auth::user()->image : 'default.png')) }}" alt="{{ Auth::user()->name }}" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                                <img src="{{ asset('cmcjal/storage/pictures/profile/'. (Auth::user()->image ? Auth::user()->image : 'default.png')) }}" alt="{{ Auth::user()->name }}" class="img-circle" data-lock-picture="{{ asset('cmcjal/storage/pictures/profile/'. (Auth::user()->image ? Auth::user()->image : 'default.png')) }}" />
                             </figure>
-                            <div class="profile-info" data-lock-name="{{Auth::user()->name}}" data-lock-email="{{Auth::user()->email}}">
+                            <div class="profile-info" data-lock-name="{{Auth::user()->name}}" data-lock-lastname="{{ Auth::user()->lastname }}" data-lock-email="{{Auth::user()->email}}" data-lock-token={{ csrf_token() }} >
                                 <span class="name">{{Auth::user()->name}}</span>
                                 <span class="role">{{Auth::user()->type}}</span>
                             </div>
@@ -82,13 +82,13 @@
                             <ul class="list-unstyled">
                                 <li class="divider"></li>
                                 <li>
-                                    <a role="menuitem" tabindex="-1" href="{{ url('users').'/'.Auth::user()->id }}"><i class="fa fa-user"></i> My Profile</a>
+                                    <a role="menuitem" tabindex="-1" href="{{ url('users').'/'.Auth::user()->id }}"><i class="fa fa-user"></i> Mi Perfil</a>
                                 </li>
                                 <li>
-                                    <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+                                    <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear Pantalla</a>
                                 </li>
                                 <li>
-                                    <a role="menuitem" tabindex="-1" href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a>
+                                    <a role="menuitem" tabindex="-1" href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
                                 </li>
                             </ul>
                         </div>
@@ -247,7 +247,11 @@
             $('a.sidebar-right-toggle').css({
                 'opacity' : 0,
                 'visibility' : 'hidden' });
+            @if (session('locked', false))
+                LockScreen.show();
+            @endif
         });
+
         
         </script>
     </body>

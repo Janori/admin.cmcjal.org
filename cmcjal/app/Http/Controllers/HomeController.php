@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+
+use App\EventCalendar;
 use App\Thumbnail;
 use App\User;
+
 use Illuminate\Http\Request;
-use Auth;
-use App\EventCalendar;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
+use Auth;
 use File;
 
 class HomeController extends Controller
@@ -32,26 +37,26 @@ class HomeController extends Controller
 
 	public function index()
 	{
-		return view('index');
+		return view('home.index');
 	}
 
 	public function users()
 	{
 		
-		$users = User::paginate(2);
-		return view('user.index', compact('users'));
+		$users = User::paginate(10);
+		return view('home.users', compact('users'));
 	}
 
 
 	
 	public function events() {
 		$user = Auth::user();
-		return view('calendar')->with('user', $user);
+		return view('home.calendar')->with('user', $user);
 	}
 
 	public function assistance()
 	{
-		return view('assistance');
+		return view('home.assistance');
 	}
 	
 	public function files() {
@@ -66,12 +71,34 @@ class HomeController extends Controller
 			$files_array[$key]['id'] = $key;
 		  }
 
-		return view('files')->with('files', $files_array);
+		return view('home.files')->with('files', $files_array);
 	}
 
-    public function gallery()
-    {
-        $thumbnails = Thumbnail::all();
-        return view('gallery', compact('thumbnails'));
-    }
+	public function gallery()
+	{
+		$thumbnails = Thumbnail::all();
+		return view('home.gallery', compact('thumbnails'));
+	}
+
+	public function lockscreen(Request $request)
+	{
+
+		$email 		= $request->input('ls_email');
+		$password 	= $request->input('ls_password');
+
+		$hashedPassword = DB::table('users')->select('password')->where('email', $email)->first()->password;
+
+		if (Hash::check($password, $hashedPassword))
+		{
+			session(['locked' => false]);
+			return 'success';
+		}
+
+		return 'failure';
+	}
+
+	public function lock()
+	{
+		session(['locked' => true]);
+	}
 }
