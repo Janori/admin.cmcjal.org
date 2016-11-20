@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventCalendar extends Model
 {
-    protected $table = 'event_calendars';
+    protected $table = 'events';
     protected $fillable = ['title', 'all_day', 'start', 'end', 'color', 'credits', 'exam', 'place', 'address', 'speaker', 'institution'];
     protected $hidden = ['id'];
 

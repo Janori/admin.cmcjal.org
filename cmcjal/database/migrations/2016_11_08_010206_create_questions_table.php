@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id');
-            $table->foreign('event_id')->references('id')->on('event_calendars');
+            $table->foreign('event_id')->references('id')->on('events');
             $table->string('title');
             $table->string('options');
             $table->char('correct');

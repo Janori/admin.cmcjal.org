@@ -17,7 +17,7 @@ class CreateAssistanceTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('event_id');    
-            $table->foreign('event_id')->references('id')->on('event_calendars');
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 

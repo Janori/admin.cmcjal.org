@@ -103,7 +103,7 @@ class UserController extends Controller
 		foreach ($query as $q)
 			$values[] = $q->event_id;
 
-		$sub   = DB::table('event_calendars')->select('title', 'start')->whereIn('id', $values)->get();
+		$sub   = DB::table('events')->select('title', 'start')->whereIn('id', $values)->get();
 
 		$data = array();
 

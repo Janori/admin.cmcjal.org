@@ -55,7 +55,7 @@ class AssistanceController extends Controller
 	{
 		$term = strtolower($request->input('term'));
 
-		$result = DB::table("event_calendars")->select('id', 'title', 'start')->where('title', 'LIKE', '%'. $term . '%')->take(10)->get();
+		$result = DB::table("events")->select('id', 'title', 'start')->where('title', 'LIKE', '%'. $term . '%')->take(10)->get();
 		
 		$data = array(); 
 		foreach ($result as $r) {

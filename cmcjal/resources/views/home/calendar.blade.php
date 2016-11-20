@@ -42,7 +42,7 @@
 		<div class="col-md-3">
 			<div class="box box-solid">
 			<div class="box-header with-border">
-				<h4 class="box-title">Eventos sin asignar</h4>
+				<h4 class="box-title">Eventos sin agendar</h4>
 			</div>
 			<div class="box-body">
 				<!-- the events -->
