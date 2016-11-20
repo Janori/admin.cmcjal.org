@@ -15,7 +15,7 @@
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
-				<li><span>Calendario / Crear Examen</span></li>
+				<li><span>Calendario / Detalles del Examen</span></li>
 			</ol>
 	
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -31,16 +31,16 @@
 
 			</div>
 
-				<h2 class="panel-title"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp; Crear examen</h2>
+				<h2 class="panel-title"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp; Detalles del examen</h2>
 
 		</header>
 		<div class="panel-body">
-			{!! Form::open(['route' => 'exam.store', 'method' => 'POST',	'class' => 'form-horizontal']) !!}
+			{!! Form::open(['route' => ['exam.store', $event_id], 'method' => 'POST',	'class' => 'form-horizontal']) !!}
 				{!! Form::hidden('event_id', $event_id, ['id' => 'event_id']) !!}
 				<div class="form-group box-body">
 					{!! Form::label('nombre', 'Título:', ['class' => 'col-sm-2 col-md-offset-1 control-label']) !!}
 					<div class="col-sm-7">
-						{!! Form::text('exam', null, ['class' => 'form-control', 'placeholder' => 'Tíutlo del examen']) !!}
+						{!! Form::text('exam', $exam, ['class' => 'form-control', 'placeholder' => 'Tíutlo del examen']) !!}
 					</div>
 				</div>
 
@@ -64,7 +64,7 @@
 				</div>
 
 
-				{!! Form::submit('Crear Examen', ['class' => 'col-md-offset-1 btn btn-primary btn-lg pull-right', 'style' => 'margin-right: 15px; margin-top: 10px;']) !!}
+				{!! Form::submit('Guardar', ['class' => 'col-md-offset-1 btn btn-primary btn-lg pull-right', 'style' => 'margin-right: 15px; margin-top: 10px;']) !!}
 
 			{!! Form::close() !!}
 		</div>

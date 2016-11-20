@@ -37,16 +37,17 @@
 		<div class="panel-body">
 			@if(Auth::user()->type == "Administrador")
 
-			{!! Form::model($event, ['route' => ['events.edit', $event->id], 'method' => 'PUT']) !!}
+			{!! Form::model($event, ['route' => ['events.edit', $event->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+
 				<div class="form-group">
-					{!! Form::label('titulo', 'Titulo del evento:') !!}
-					<div class="box-body">
+					{!! Form::label('titulo', 'Titulo del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
+					<div class="col-sm-7">
 						{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el titulo para este evento']) !!}	
 					</div>
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('color', 'Color del evento:') !!}	
+					{!! Form::label('color', 'Color del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}	
 					{!! Form::hidden('color') !!}
 					<div class="box-body">
 						<ul class="fc-color-picker" id="color-chooser">
@@ -64,26 +65,61 @@
 							<li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
 							<li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
 						</ul>
-					</div>
-
-					<div class="box-body">
-						<p style="font-size: 1.5em;	">Color seleccionado: &nbsp;
-							{!! Form::button('Evento', ['id' => 'color-picker', 'class' => 'btn btn-primary btn-flat', 'style' => 'border-radius: 5px;width: 120px;border-color: ' . $event->color . ';background-color: ' . $event->color]) !!}
-						</p>
+						&nbsp;
+						{!! Form::button('&nbsp;', ['id' => 'color-picker', 'class' => 'btn btn-primary btn-flat', 'style' => 'border-radius: 5px;width: 120px;border-color: ' . $event->color . ';background-color: ' . $event->color]) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('exam', 'Examen:') !!}	
+					{!! Form::label('credits', 'Créditos:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
+					<div class="col-sm-2">
+						{!! Form::number('credtis', null, ['class' => 'form-control', 'min' => '1']) !!}
+					</div>
+				</div>
+				<legend></legend>
+
+				<div class="form-group">
+					{!! Form::label('place', 'Lugar:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
+					<div class="col-sm-7">
+						{!! Form::text('place', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el lugar para este evento']) !!}	
+					</div>
+				</div>
+
+				<div class="form-group">
+					{!! Form::label('address', 'Dirección:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
+					<div class="col-sm-7">
+						{!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => 'Ingresa la dirección para este evento']) !!}	
+					</div>
+				</div>
+
+				<div class="form-group">
+					{!! Form::label('speaker', 'Ponente:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
+					<div class="col-sm-7">
+						{!! Form::text('speaker', null, ['class' => 'form-control', 'placeholder' => 'Ingresa nombre del ponente']) !!}	
+					</div>
+				</div>
+
+				<div class="form-group">
+					{!! Form::label('institution', 'Institución:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
+					<div class="col-sm-7">
+						{!! Form::text('institution', null, ['class' => 'form-control', 'placeholder' => 'Ingresa la institución del ponente']) !!}	
+					</div>
+				</div>
+
+				<legend></legend>
+	
+				<div class="form-group">
+					{!! Form::label('exam', 'Examen:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}	
 					<div class="box-body">
 						@if($event->exam == NULL)
-							<a href="{{ route('exam.create', ['event_id' => $event->id]) }}" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar Examen</a>
+							<a href="{{ route('exam.create', ['event_id' => $event->id]) }}" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Agregar Examen</a>
 						@else
-							{!! Form::label('exam', $event->exam) !!} &nbsp;
-							<a href="#" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Editar Examen</a>
+							{!! Form::label('exam', '"'. $event->exam . '"', ['style' => 'font-weight: bold;']) !!}&nbsp;
+							<a href="{{ route('exam.create', ['event_id' => $event->id]) }}" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Editar Examen</a>
 						@endif
 					</div>
 				</div>
+
 
 				<div class="box-body pull-right">
 					{!! Form::submit('Guardar Cambios', ['class' => 'btn btn-primary', 'style' => 'margin-right: 15px;']) !!}
@@ -147,6 +183,9 @@
 
 		$('#delete-button').click(function(event) {
 			event.preventDefault();
+
+			if(!confirm('¿Está seguro que desea eliminar el evento?'))
+				return;
 
 			$('.btn.btn-danger.hidden').click();
 		});

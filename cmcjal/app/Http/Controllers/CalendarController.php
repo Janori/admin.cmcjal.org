@@ -30,7 +30,7 @@ class CalendarController extends Controller
 				"all_day" => $allDay[$i],
 				"color"	=> $color[$i],
 				"id" => $id[$i],
-				"url"=> 'events/' . $id[$i]
+				//"url"=> 'events/' . $id[$i]
 				//en el campo "url" concatenamos el el URL con el id del evento para luego
 				//en el evento onclick de JS hacer referencia a este y usar el método show
 				//para mostrar los datos completos de un evento
@@ -93,6 +93,7 @@ class CalendarController extends Controller
 	}
 
 	public function update(Request $request){
+		dd($request->all());
 
 		//Valores recibidos via ajax
    		$id 	= $request->input('id');

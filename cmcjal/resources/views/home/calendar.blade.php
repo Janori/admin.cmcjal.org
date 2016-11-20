@@ -47,16 +47,16 @@
 			<div class="box-body">
 				<!-- the events -->
 				<div id="external-events">
-				<div class="external-event bg-green">Evento 1</div>
-				<div class="external-event bg-yellow">Evento 2</div>
-				<div class="external-event bg-aqua">Evento 3</div>
-				<div class="external-event bg-light-blue">Evento 4</div>
-				<div class="checkbox hidden">
-					<label for="drop-remove">
-					<input type="checkbox" id="drop-remove" checked>
-					Eliminar al asignar
-					</label>
-				</div>
+					<div class="external-event bg-green">Evento 1</div>
+					<div class="external-event bg-yellow">Evento 2</div>
+					<div class="external-event bg-aqua">Evento 3</div>
+					<div class="external-event bg-light-blue">Evento 4</div>
+					<div class="checkbox hidden">
+						<label for="drop-remove">
+						<input type="checkbox" id="drop-remove" checked>
+						Eliminar al asignar
+						</label>
+					</div>
 				</div>
 			</div>
 			<!-- /.box-body -->
@@ -87,7 +87,7 @@
 				</div>
 				<!-- /btn-group -->
 				<div class="input-group">
-				<input id="new-event" type="text" class="form-control" placeholder="Titulo de evento">
+				<input id="new-event" type="text" class="form-control" placeholder="Título">
 
 				<div class="input-group-btn">
 					<button id="add-new-event" type="button" class="btn btn-primary btn-flat">Agregar</button>
@@ -95,6 +95,8 @@
 				<!-- /btn-group -->
 				</div><br/><br/>
 				<!-- /input-group -->
+			  	{!! Form::open(['route' => ['events.create'], 'method' => 'POST', 'id' =>'form-calendario']) !!}
+			  	{!! Form::close() !!}
 			</div>
 			</div>
 		</div>
@@ -176,7 +178,7 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listWeek'
+				right: 'month, agendaWeek, agendaDay, listWeek'
 			},
 			editable: true,
 			droppable: true,	// this allows things to be dropped onto the calendar !!!
@@ -184,16 +186,14 @@
 			navLinks: true,
 			events: { url : '{{ route('events.all') }}'},
 			timeFormat: 'h:mm',
-			drop : function(date, jsEvent, ui, resourceId)
-			{
+			drop : function(date, jsEvent, ui, resourceId) {
 				// is the "remove after drop" checkbox checked?
 				if ($('#drop-remove').is(':checked')) {
 					// if so, remove the element from the "Draggable Events" list
 					$(this).remove();
 				}
 			},
-			eventReceive : function(event)
-			{
+			eventReceive : function(event) {
 				var data = {
 					title 	: event.title,
 				 	start	: event.start.format(),
@@ -219,7 +219,6 @@
 						console.log("Error al crear evento");
 					}		
 				});
-
 			},
 			eventResize: function(event, delta, revertFunc) {
 				if (!confirm('¿Es correcto a las ' + event.end.format() + '?')) {
@@ -252,7 +251,6 @@
 						console.log("Error al actualizar evento");
 					}
 				});
-
 			},
 			eventDrop: function(event, delta) {
 				if (!confirm('¿Es correcto a las ' + event.start.format() + '?')) {
@@ -285,7 +283,40 @@
 					  console.log("Error al actualizar eventdrop");
 					}
 				});
-	  }
+	  		},
+	  		eventRender: function(event, element) {
+        		element.attr('title', event.tooltip);
+    		}
+			/*eventMouseover: function(event, jsEvent, view) { 
+				var start = (event.start.format("HH:mm"));
+				var back = 	event.backgroundColor;
+				if(event.end)
+					var end = event.end.format("HH:mm");
+				else
+					var end="No definido";
+		
+				if(event.allDay)
+					var allDay = "Si";
+				else
+					var allDay = "No";
+
+				var tooltip = '<div class="tooltipevent" style="width:200px;height:100px;color:white;background:'+back+';position:absolute;z-index:10001;">'+'<center>'+ event.title +'</center>'+'Todo el dia: '+allDay+'<br>'+ 'Inicio: '+start+'<br>'+ 'Fin: '+ end +'</div>';
+
+				$("body").append(tooltip);
+
+				$(this).mouseover(function(e) {
+		  			$(this).css('z-index', 10000);
+		  			$('.tooltipevent').fadeIn('500');
+		  			$('.tooltipevent').fadeTo('10', 1.9);
+				}).mousemove(function(e) {
+		  			$('.tooltipevent').css('top', e.pageY + 10);
+		  			$('.tooltipevent').css('left', e.pageX + 20);
+				});			
+			},
+			eventMouseout: function(calEvent, jsEvent) {
+				$(this).css('z-index', 8);
+				//$('.tooltipevent').remove();
+			}*/
 		});
 
 		/* AGREGANDO EVENTOS AL PANEL */

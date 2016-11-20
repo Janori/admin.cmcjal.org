@@ -12,13 +12,18 @@ class ExamController extends Controller
 {
 	public function create($event_id)
 	{
-		$questions = Question::all();
-		return view('exam.create', ['event_id' => $event_id, 'question' => $questions]);
+		$questions 	= EventCalendar::find($event_id)->questions()->get();
+		$exam 		= EventCalendar::find($event_id)->exam;
+
+		return view('exam.details', [
+				'event_id' 	=> $event_id,
+				'question' 	=> $questions,
+				'exam' 		=> $exam
+			]);
 	}
 
-	public function store(Request $request)
+	public function store($event_id, Request $request)
 	{
-		$event_id 	= $request->input('event_id'); 
 		$event 		= EventCalendar::find($event_id);
 
 		$event->exam = $request->input('exam');
