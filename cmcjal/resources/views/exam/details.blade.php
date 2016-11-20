@@ -15,7 +15,7 @@
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
-				<li><span>Calendario / Detalles del Examen</span></li>
+				<li><span>Calendario / Examen del Evento</span></li>
 			</ol>
 	
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -31,7 +31,7 @@
 
 			</div>
 
-				<h2 class="panel-title"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp; Detalles del examen</h2>
+				<h2 class="panel-title"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp; Examen del Evento</h2>
 
 		</header>
 		<div class="panel-body">
@@ -50,16 +50,27 @@
 				</div>
 
 				<div class="form-group box-body">
-					<div class="col-sm-7 col-md-offset-2 box-body questions">
-					@foreach($question as $question)
-						<div class="row" data-id="{{ $question->id }}">
-							<div class="col-md-8 info">{{ $question->title }}</div>
-							<div class="col-md-4">
-								<a href="#" class="btn btn-primary edit-question"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-								<a href="#" class="btn btn-danger btn-delete delete-question"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-							</div>
-						</div>
-					@endforeach
+					<div class="col-sm-8 col-md-offset-2 box-body questions">
+						<table class="table table-hover table-striped">
+							<thead>
+								<th>Titulo</th>
+								<th>Acciones</th>
+							</thead>
+							<tbody>
+								
+							@foreach($question as $question)
+						
+								<tr data-id="{{ $question->id }}">
+									<td>{{ $question->title }}</div>
+									<td class="col-md-4">
+										<a href="#" class="btn btn-primary edit-question"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+										<a href="#" class="btn btn-danger btn-delete delete-question"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+									</div>
+								</tr>
+
+							@endforeach
+							</tbody>
+						</table>
 					</div>
 				</div>
 
@@ -135,26 +146,27 @@
 	{
 		$('.create-question').click(function(event) {
 			event.preventDefault();
-			$('.number-question').html($('.questions').children().length + 1);
+			$('.number-question').html($('.questions tbody').children().length + 1);
 			$('#type').val('create');
 			$('#modal').modal();
+			$('.modal form')[0].reset();
 		});
 
 		$('.edit-question').click(function(event) {
 			event.preventDefault();
 			// Quizá después implemente una busqueda binaria para reducir complejidad a O(log n);
-			var row = $(this).parents('.row')[0];
+			var row = $(this).parents('tr')[0];
 
-			for(var i = 0; i < $('.questions .row').length; i++)
-				if(row == $('.questions .row')[i])
+			for(var i = 0; i < $('.questions tr').length; i++)
+				if(row == $('.questions tr')[i])
 				{
-					$('.number-question').html(i + 1);
+					$('.number-question').html(i);
 					break;
 				}
 			
 			$('#type').val('edit');
 
-			var id 		= $(this).parents('.row').data('id');
+			var id 		= $(this).parents('tr').data('id');
 			var form 	= $('#event-info');
 			var url 	= '{{ route('question.show', ['id' => ':EVENT_ID']) }}';
 				url 	= url.replace(':EVENT_ID', id); 
@@ -173,6 +185,7 @@
 			});
 
 			$('#modal').modal();
+			$('.modal form')[0].reset();
 		});
 
 		$('.send-question').click(function(event) {
@@ -205,18 +218,14 @@
 						},
 					})
 					.done(function(response) {
-						var container = $('.questions');
+						console.log(response);
+						var container = $('.questions tbody');
 
-						var div = $('<div class="row" data-id="' + response + '">')
-								  .append('<div class="col-md-8 info">' + data.title + '</div>')
-         						  .append('<div class="col-md-4"><a href="#" class="btn btn-primary edit-question"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="#" class="btn btn-danger btn-delete delete-question"><i class="fa fa-trash-o" aria-hidden="true"></i></a></div>"')
+						var div = $('<tr data-id="' + response + '">')
+								  .append('<td>' + data.title + '</td>')
+         						  .append('<td><a href="#" class="btn btn-primary edit-question"><i class="fa fa-pencil" aria-hidden="true"></i></a><a href="#" class="btn btn-danger btn-delete delete-question"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>"')
          						  .appendTo(container);
 
-						$(':input','#modal form')
-						.not(':button, :submit, :reset, :hidden, select')
-						.val('')
-						.removeAttr('checked')
-						.removeAttr('selected');
 					});
 					
 					break;
@@ -234,15 +243,8 @@
 						},
 					})
 					.done(function(response) {
-						var container = $('.questions');
 
-         				console.log($('div.row[data-id="' + response + '"]').find('.col-md-8').html(data.title));
-
-						$(':input','#modal form')
-						.not(':button, :submit, :reset, :hidden, select')
-						.val('')
-						.removeAttr('checked')
-						.removeAttr('selected');
+         				$('tr[data-id="' + response + '"]').find('td').first().html(data.title);
 					});
 
 					break;
@@ -271,7 +273,6 @@
 				row.remove();
 			});
 		});
-
 	});
 </script>
 @endsection

@@ -65,13 +65,13 @@ Route::group(['middleware' => 'web'], function () {
 	});
 
 	Route::group(['prefix' => 'exam'], function() {
-	    Route::get('/{event_id}', 'ExamController@create')->name('exam.create');
-	    Route::post('/{event_id}', 'ExamController@store')->name('exam.store');
-
-	    // Question Routes inside of exam
-	    Route::post('question', 'ExamController@storeQuestion')->name('question.store');
-	    Route::put('question/{id}', 'ExamController@updateQuestion')->name('question.update');
-	    Route::get('question/{id}', 'ExamController@showQuestion')->name('question.show');
-	    Route::delete('question/{id}', 'ExamController@deleteQuestion')->name('question.delete');
+		// Question Routes inside of exam
+		Route::post('question', 'ExamController@storeQuestion')->name('question.store');
+		Route::put('question/{id}', 'ExamController@updateQuestion')->name('question.update');
+		Route::get('question/{id}', 'ExamController@showQuestion')->name('question.show');
+		Route::delete('question/{id}', 'ExamController@deleteQuestion')->name('question.delete');
+		
+		Route::get('/{event_id}', 'ExamController@create')->name('exam.create');
+		Route::post('/{event_id}', 'ExamController@store')->name('exam.store');
 	});
 });

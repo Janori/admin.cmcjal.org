@@ -24,6 +24,7 @@ class ExamController extends Controller
 
 	public function store($event_id, Request $request)
 	{
+
 		$event 		= EventCalendar::find($event_id);
 
 		$event->exam = $request->input('exam');
