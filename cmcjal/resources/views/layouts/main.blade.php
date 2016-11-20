@@ -82,7 +82,7 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="{{ url('users').'/'.Auth::user()->id }}"><i class="fa fa-user"></i> Mi Perfil</a>
+									<a role="menuitem" tabindex="-1" href="{{ url('profile') }}"><i class="fa fa-user"></i> Mi Perfil</a>
 								</li>
 								<li>
 									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear Pantalla</a>
@@ -238,11 +238,6 @@
 		{!! Html::script(asset('assets/javascripts/fullcalendar/fullcalendar.min.js')) !!}
 		{!! Html::script(asset('assets/javascripts/fullcalendar/locale/es.js')) !!}
 
-		<!-- Qtip -->
-
-		{{ Html::style(asset('assets/javascripts/qtip/jquery.qtip.min.css')) }}
-		{{ Html::script(asset('assets/javascripts/qtip/jquery.qtip.min.js')) }}
-		
 		@yield('scripts')
 
 		<script type="text/javascript">

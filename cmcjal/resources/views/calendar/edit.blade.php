@@ -35,9 +35,8 @@
 
 		</header>
 		<div class="panel-body">
-			@if(Auth::user()->type == "Administrador")
 
-			{!! Form::model($event, ['route' => ['events.edit', $event->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+{!! Form::model($event, ['route' => ['events.edit', $event->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
 				<div class="form-group">
 					{!! Form::label('titulo', 'Titulo del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
@@ -73,7 +72,7 @@
 				<div class="form-group">
 					{!! Form::label('credits', 'Créditos:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					<div class="col-sm-2">
-						{!! Form::number('credtis', null, ['class' => 'form-control', 'min' => '1']) !!}
+						{!! Form::number('credits', null, ['class' => 'form-control', 'min' => '1']) !!}
 					</div>
 				</div>
 				<legend></legend>
@@ -130,37 +129,6 @@
 			{!! Form::open(['route' => ['events.delete', $event->id],  'method' => 'DELETE']) !!}
 				{!! Form::submit('Eliminar Evento', ['class' => 'btn btn-danger hidden']) !!}
 			{!! Form::close()!!}
-
-			@else
-				<div class="form-group">
-					{!! Form::label('titulo', 'Titulo del evento:') !!}
-					<div class="box-body">
-						{!! Form::label('titulo', $event->title)!!}	
-					</div>
-
-					<div class="form-group">
-					{!! Form::label('color', 'Color del evento:') !!}	
-
-					<div class="box-body">
-						<p style="font-size: 1.5em;	">Color seleccionado: &nbsp;
-							{!! Form::button('Evento', ['id' => 'color-picker', 'class' => 'btn btn-primary btn-flat', 'style' => 'border-radius: 5px;width: 120px;border-color: ' . $event->color . ';background-color: ' . $event->color]) !!}
-						</p>
-					</div>
-					
-					<div class="form-group">
-						{!! Form::label('exam', 'Examen:') !!}	
-						<div class="box-body">
-							@if($event->exam != NULL)
-								{!! Form::label('exam', $event->exam) !!} &nbsp;
-								<a href="#" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Realizar Examen</a>
-							@endif
-						</div>
-					</div>
-
-				</div>
-				</div>
-
-			@endif
 		</div>
 	</section>
 @endsection

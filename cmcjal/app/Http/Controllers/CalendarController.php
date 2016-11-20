@@ -58,17 +58,24 @@ class CalendarController extends Controller
 
 	public function show($id)
 	{
-		$evento = EventCalendar::find($id);
-		return view('calendar.details', ['event' => $evento]);
+		$event = EventCalendar::find($id);
+		return view('calendar.show', ['event' => $event]);
+	}
+
+	public function editForm($id)
+	{
+		$event = EventCalendar::find($id);
+
+		return view('calendar.edit', ['event' => $event]);
 	}
 
 	public function edit($id, Request $request)
 	{
-		$evento = EventCalendar::find($id);
-		$evento->fill($request->all());
-		$evento->save();
+		$event = EventCalendar::find($id);
+		$event->fill($request->all());
+		$event->save();
 
-		return redirect('events');
+		return redirect()->route('events.show', ['id' => $id]);
 	}
 
 	public function create(Request $request){
@@ -81,19 +88,18 @@ class CalendarController extends Controller
 		$allDay = $request->input('allDay') == "true"; 
 
 		//Insertando evento a base de datos
-		$evento = new EventCalendar();
+		$event = new EventCalendar();
 		
-		$evento->title 	= $title;
-		$evento->start 	= $start;
-		$evento->end 	= $end;
-		$evento->all_day = $allDay;
-		$evento->color = $color;
+		$event->title 	= $title;
+		$event->start 	= $start;
+		$event->end 	= $end;
+		$event->all_day = $allDay;
+		$event->color = $color;
 
-		$evento->save();
+		$event->save();
 	}
 
 	public function update(Request $request){
-		dd($request->all());
 
 		//Valores recibidos via ajax
    		$id 	= $request->input('id');
@@ -103,15 +109,15 @@ class CalendarController extends Controller
 		$color 	= $request->input('color');
 		$allDay = $request->input('allDay') == "true"; 
 
-		$evento = EventCalendar::find($id);
+		$event = EventCalendar::find($id);
 
-		$evento->title 	= $title;
-		$evento->start 	= $start;
-		$evento->end 	= $end;
-		$evento->all_day = $allDay;
-		$evento->color = $color;
+		$event->title 	= $title;
+		$event->start 	= $start;
+		$event->end 	= $end;
+		$event->all_day = $allDay;
+		$event->color = $color;
 
-		$evento->save();
+		$event->save();
 	}	
 
 	public function delete($id){

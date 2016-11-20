@@ -38,7 +38,7 @@ class UserController extends Controller
 	public function show($id)
 	{
 		$user = \App\User::find($id);
-		return view('profile')->with('user', $user)->with('id', $id);
+		return view('home.profile')->with('user', $user)->with('id', $id);
 	}
 
 	public function edit($id)

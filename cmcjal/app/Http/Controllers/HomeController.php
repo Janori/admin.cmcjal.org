@@ -80,6 +80,14 @@ class HomeController extends Controller
 		return view('home.gallery', compact('thumbnails'));
 	}
 
+
+	public function profile()
+	{
+		$id = Auth::user()->id;
+		$user = User::find($id);
+		return view('home.profile')->with('user', $user)->with('id', $id);
+	}
+
 	public function lockscreen(Request $request)
 	{
 

@@ -51,12 +51,6 @@
 					<div class="external-event bg-yellow">Evento 2</div>
 					<div class="external-event bg-aqua">Evento 3</div>
 					<div class="external-event bg-light-blue">Evento 4</div>
-					<div class="checkbox hidden">
-						<label for="drop-remove">
-						<input type="checkbox" id="drop-remove" checked>
-						Eliminar al asignar
-						</label>
-					</div>
 				</div>
 			</div>
 			<!-- /.box-body -->
@@ -187,12 +181,10 @@
 			events: { url : '{{ route('events.all') }}'},
 			timeFormat: 'h:mm',
 			drop : function(date, jsEvent, ui, resourceId) {
-				// is the "remove after drop" checkbox checked?
-				if ($('#drop-remove').is(':checked')) {
-					// if so, remove the element from the "Draggable Events" list
-					$(this).remove();
-				}
+				// Remove the element from the "Draggable Events" list
+				$(this).remove();
 			},
+
 			eventReceive : function(event) {
 				var data = {
 					title 	: event.title,
@@ -211,9 +203,9 @@
 					headers: {
 						"X-CSRF-TOKEN": crsfToken
 					},
-					success: function() {
+					success: function(response) {
+						event.id = response;
 						console.log('Evento creado');
-						location.reload();
 					},
 					error: function() {
 						console.log("Error al crear evento");
@@ -252,7 +244,7 @@
 					}
 				});
 			},
-			eventDrop: function(event, delta) {
+			eventDrop: function(event, delta, revertFunc) {
 				if (!confirm('¿Es correcto a las ' + event.start.format() + '?')) {
 					revertFunc();
 					return;
@@ -284,39 +276,11 @@
 					}
 				});
 	  		},
-	  		eventRender: function(event, element) {
-        		element.attr('title', event.tooltip);
-    		}
-			/*eventMouseover: function(event, jsEvent, view) { 
-				var start = (event.start.format("HH:mm"));
-				var back = 	event.backgroundColor;
-				if(event.end)
-					var end = event.end.format("HH:mm");
-				else
-					var end="No definido";
-		
-				if(event.allDay)
-					var allDay = "Si";
-				else
-					var allDay = "No";
-
-				var tooltip = '<div class="tooltipevent" style="width:200px;height:100px;color:white;background:'+back+';position:absolute;z-index:10001;">'+'<center>'+ event.title +'</center>'+'Todo el dia: '+allDay+'<br>'+ 'Inicio: '+start+'<br>'+ 'Fin: '+ end +'</div>';
-
-				$("body").append(tooltip);
-
-				$(this).mouseover(function(e) {
-		  			$(this).css('z-index', 10000);
-		  			$('.tooltipevent').fadeIn('500');
-		  			$('.tooltipevent').fadeTo('10', 1.9);
-				}).mousemove(function(e) {
-		  			$('.tooltipevent').css('top', e.pageY + 10);
-		  			$('.tooltipevent').css('left', e.pageX + 20);
-				});			
-			},
-			eventMouseout: function(calEvent, jsEvent) {
-				$(this).css('z-index', 8);
-				//$('.tooltipevent').remove();
-			}*/
+	  		eventClick: function(calEvent, jsEvent, view) {
+	  		 	var url = '{{ route('events.show', ':EVENT_ID') }}';
+	  		 		url = url.replace(':EVENT_ID', calEvent.id);
+	  		 	window.location.href = url;
+			}
 		});
 
 		/* AGREGANDO EVENTOS AL PANEL */
@@ -335,9 +299,8 @@
 			e.preventDefault();
 			//Get value and make sure it is not null
 			var val = $("#new-event").val();
-			if (val.length == 0) {
-			return;
-			}
+			if (val.length == 0)
+				return;
 
 			//Create events
 			var event = $("<div />");

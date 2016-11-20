@@ -8,6 +8,7 @@ Route::group(['middleware' => 'web'], function () {
 	// Home Controller routes.
 	Route::get('/', 'HomeController@index');
 	Route::get('users', 'HomeController@users');
+	Route::get('profile', 'HomeController@profile');
 	Route::get('assistance', 'HomeController@assistance');
 	Route::get('events', 'HomeController@events');
 	Route::get('files', 'HomeController@files');
@@ -44,6 +45,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::delete('/{id}','CalendarController@delete')->name('events.delete');
 		Route::put('/{id}', 'CalendarController@edit')->name('events.edit');
 		Route::get('/{id}', 'CalendarController@show')->name('events.show');
+		Route::get('/{id}/edit', 'CalendarController@editForm')->name('events.form');
 	});
 
 	// Thumbnail Controller routes
