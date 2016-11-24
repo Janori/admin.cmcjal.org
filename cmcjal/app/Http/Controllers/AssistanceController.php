@@ -24,7 +24,7 @@ class AssistanceController extends Controller
 
 		$event->users()->attach($user);
 
-		DB::table('users')->where('id', $user_id)->increment('credits');
+		DB::table('users')->where('id', $user_id)->increment('credits', $event->credits);
 
 		// TODO Crear diploma de asistencia
 
@@ -127,5 +127,19 @@ class AssistanceController extends Controller
 
         return response()->json($data);
     
+	}
+
+	public function checkAssistance(Request $request)
+	{
+		$event_id 	= $request->input('event_id');
+		$user_id 	= $request->input('user_id');
+
+
+		$result = DB::table('assistance')->where([
+				['event_id', '=', $event_id],
+				['user_id', '=', $user_id] 
+			])->count();
+
+		return $result;
 	}
 }

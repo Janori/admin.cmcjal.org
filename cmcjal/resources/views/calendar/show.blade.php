@@ -1,9 +1,5 @@
 @extends('layouts.main')
 
-@section('title')
-	CMCJAL Admin
-@endsection
-
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Calendario / Detalles del evento</h2>
@@ -129,8 +125,8 @@
 					{!! Form::label('exam', 'Examen:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}	
 					<div class="col-sm-7">
 						@if($event->exam != NULL)
-							{!! Form::label('exam', $event->exam) !!} &nbsp;
-							<a href="#" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Realizar Examen</a>
+							{!! Form::label('exam', '"' . $event->exam . '"') !!} &nbsp;
+							<a href="{{ route('exam.show', ['event_id' => $event->id]) }}" id="do-exam" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Realizar Examen</a>
 						@else
 							{!! Form::label(null, 'Examen no disponible', ['style' => 'color: #bbb;']) !!}
 						@endif
@@ -145,6 +141,25 @@
 	$(document).ready(function()
 	{
 		$('label:contains("No disponible")').css('color', '#bbb');
+
+		var data = {
+			_token		: '{{ csrf_token() }}',
+			user_id		: {{  Auth::user()->id }},
+			event_id	: {{  $event->id }}
+		};
+		
+		var url = '{{ route('assistance.check') }}';
+
+		$.get(url, data, function(response)
+		{
+			if(response == "1")
+			{
+				$('#do-exam').addClass('disabled').addClass('btn-success').removeClass('btn-info');
+				$('#do-exam').html('<i class="fa fa-check" aria-hidden="true"></i>&nbsp;Examen aprobado</a>')
+			}
+
+
+		});
 	});
 
 </script>

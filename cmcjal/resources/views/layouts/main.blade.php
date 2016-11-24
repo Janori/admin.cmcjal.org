@@ -5,7 +5,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>@yield('title')</title>
+		<title>CMCJAL A.C. :: Plataforma</title>
 
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
@@ -227,16 +227,13 @@
 		<!-- Theme Initialization Files -->
 		{!! Html::script(asset('assets/javascripts/theme.init.js')) !!}
 
-
-		<!-- Examples -->
-		{{--{!! Html::script(asset('assets/javascripts/dashboard/examples.dashboard.js')) !!} --}}
-
-
 		<!-- Full Calendar -->
 		{!! Html::script(asset('assets/javascripts/moment.min.js')) !!}
 		{!! Html::style(asset('assets/javascripts/fullcalendar/fullcalendar.min.css')) !!}
 		{!! Html::script(asset('assets/javascripts/fullcalendar/fullcalendar.min.js')) !!}
 		{!! Html::script(asset('assets/javascripts/fullcalendar/locale/es.js')) !!}
+
+		{!! Html::script(asset('assets/javascripts/jquery.countdown.min.js')) !!}
 
 		@yield('scripts')
 

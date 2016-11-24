@@ -1,9 +1,5 @@
 @extends('layouts.main')
 
-@section('title')
-	CMCJAL Admin
-@endsection
-
 @section('content')
 	@if (count($errors) > 0)
 	  <div class="custom-alert-padding">
@@ -189,10 +185,10 @@
 	</div>
 	<!-- Modal -->
 	<div id="modal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 
 			<!-- Modal content-->
-			<div class="modal-content">
+			<div class="modal-content modal-lg">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Créditos obtenidos</h4>
@@ -203,6 +199,7 @@
 							<thead>
 								<th>Fecha</th>
 								<th>Evento</th>
+								<th>Créditos otorgados</th>
 								<th>Diploma</th>
 							</thead>
 							<tbody></tbody>
@@ -254,6 +251,7 @@
 				{
 					$('<tr>').append('<td>' + response[i].date + '</td>')
 							 .append('<td>' + response[i].title + '</td>')
+							 .append('<td>' + response[i].credits + '</td>')
 							 .append('<td><a class="btn btn-info"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Ver certificado </a></td>' )
 							 .appendTo(container);
 				}

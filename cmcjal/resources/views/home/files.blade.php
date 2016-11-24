@@ -1,12 +1,5 @@
 @extends('layouts.main')
 
-
-<!-- Site title -->
-@section('title')
-    CMCJAL Admin
-@endsection
-
-<!-- Main content -->
 @section('content')
     <div class="custom-alert-padding">
         <div class="flash-message">

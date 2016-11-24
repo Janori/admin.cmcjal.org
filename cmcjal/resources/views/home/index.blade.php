@@ -1,9 +1,5 @@
 @extends('layouts.main')
 
-@section('title')
-    CMCJAL Admin
-@endsection
-
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading"><h3><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;¡BIENVENIDO!</h3></div>

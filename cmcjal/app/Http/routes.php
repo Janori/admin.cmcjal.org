@@ -62,6 +62,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('users', 'AssistanceController@getUserSearch')->name('assistance.user');
 		Route::post('/', 'AssistanceController@store')->name('assistance.store');
 		Route::post('detete', 'AssistanceController@delete')->name('assistance.delete');
+		Route::get('check', 'AssistanceController@checkAssistance')->name('assistance.check');
 	});
 
 	Route::group(['prefix' => 'exam'], function() {
@@ -70,8 +71,10 @@ Route::group(['middleware' => 'web'], function () {
 		Route::put('question/{id}', 'ExamController@updateQuestion')->name('question.update');
 		Route::get('question/{id}', 'ExamController@showQuestion')->name('question.show');
 		Route::delete('question/{id}', 'ExamController@deleteQuestion')->name('question.delete');
-		
+
+		Route::post('/evaluate', 'ExamController@evaluate')->name('exam.evaluate');
 		Route::get('/{event_id}', 'ExamController@create')->name('exam.create');
 		Route::post('/{event_id}', 'ExamController@store')->name('exam.store');
+		Route::get('/{event_id}/test', 'ExamController@show')->name('exam.show');
 	});
 });

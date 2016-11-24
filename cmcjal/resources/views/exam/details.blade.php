@@ -1,9 +1,5 @@
 @extends('layouts.main')
 
-@section('title')
-	CMCJAL Admin
-@endsection
-
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Calendario / Examen del evento</h2>
