@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-	@if(Auth::user()->type == "Administrador")
+	@if(Auth::user()->type == 1)
 	<div class="row">
 		<div class="col-md-3 col-md-offset-9" style="text-align: center; padding-bottom: 10px;">
 			<a class="btn btn-info" href="{{ url('users/create') }}">
@@ -54,15 +54,15 @@
 					<th>Acciones</th>
 				</thead>
 				@foreach($users as $user)
-				
+
 				<tr data-id={{ $user->id }}>
 					<td>{{ $user->id }}</td>
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->lastname }}</td>
 					<td>{{ $user->email }}</td>
-					<td>{{ $user->type }}</td>
+					<td>{{ array_flip(config('constants.USER_TYPE'))[$user->type] }}</td>
 					<td>{{ $user->credits }}</td>
-					<td>{{ ($user->status == 1 ? "Activo" : "Inactivo") }}</td>
+					<td>{{ array_flip(config('constants.USER_STATUS'))[$user->status] }}</td>
 					<td>
 						{{ link_to_route('users.edit', 'Editar', $parameters = $user->id, $attributes = ['class' => 'btn btn-primary']) }}
 						{{ Html::link('#', 'Eliminar', ['class' => 'btn btn-danger btn-delete']) }}
@@ -103,7 +103,7 @@
 
 			$.post(url, data, function(response)
 			{
-				alert(response);
+				bootbox.alert(response);
 			});
 		});
 

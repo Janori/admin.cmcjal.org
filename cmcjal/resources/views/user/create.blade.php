@@ -64,7 +64,7 @@
 				<div class="form-group">
 					{!! Form::label('tipo', 'Tipo de usuario:', ['class' => 'col-sm-2 col-md-offset-1 control-label']) !!}
 					<div class="col-sm-7">
-						{!! Form::select('type', ['Administrador' => 'Administrador', 'Colegiado' => 'Colegiado'], null, ['class' => 'form-control']) !!}
+						{!! Form::select('type', array_flip(config('constants.USER_TYPE')), null, ['class' => 'form-control']) !!}
 					</div>
 				</div>
 

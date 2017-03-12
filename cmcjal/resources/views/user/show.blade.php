@@ -54,7 +54,7 @@
 					<hr class="dotted short">
 
 					<h6 class="text-muted">Información</h6>
-						<span class="thumb-info-type">{{ $user->type  }}</span>
+						<span class="thumb-info-type">{{ $user->type == 1 ? 'Administrador': 'Colegiado' }}</span>
 						<br>
 						<span class="thumb-info-type">{{ $user->title  }}</span>
 						<br>
@@ -77,68 +77,21 @@
 					<li class="active">
 						<a href="#overview" data-toggle="tab" aria-expanded="true">Informacion</a>
 					</li>
-					<li class="">
+					@if(Auth::user()->type == config('constants.USER_TYPE.Administrador'))
+					<li>
 						<a href="#files" data-toggle="tab" aria-expanded="false">Archivos</a>
 					</li>
+					@endif
 				</ul>
 				<div class="tab-content">
 					<div id="overview" class="tab-pane active">
-					@if ($id == Auth::user()->id)
 						<div id="edit" class="tab-pane">
-
-							<form class="form-horizontal" method="get">
-								<h4 class="mb-xlg">Editar Informacion</h4>
-								<fieldset>
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="profileFirstName">Nombre</label>
-										<div class="col-md-8">
-											<input type="text" class="form-control" id="profileFirstName" value="{{ $user->name }}">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="profileLastName">Apellidos</label>
-										<div class="col-md-8">
-											<input type="text" class="form-control" id="profileLastName" value="{{ $user->lastname }}">
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-md-8 col-md-offset-3">
-											<button class="btn btn-primary form-control" type="submit">Cambiar</button>
-										</div>
-									</div>
-
-								</fieldset>
-								<hr class="dotted tall">
-								<h4 class="mb-xlg">Cambiar Contraseña</h4>
-								<fieldset class="mb-xl">
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="profileNewPassword">Nueva Contraseña</label>
-										<div class="col-md-8">
-											<input type="password" class="form-control" id="profileNewPassword">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="profileNewPasswordRepeat">Repita la Contraseña</label>
-										<div class="col-md-8">
-											<input type="password" class="form-control" id="profileNewPasswordRepeat">
-										</div>
-									</div>
-								</fieldset>
-								<div class="panel-footer">
-									<div class="row">
-										<div class="col-md-9 col-md-offset-3">
-											<button type="submit" class="btn btn-primary">Cambiar</button>
-											<button type="reset" class="btn btn-default">Limpiar</button>
-										</div>
-									</div>
-								</div>
-
-							</form>
-
-						</div>
-					@else
-						<div id="edit" class="tab-pane">
+							@if(Auth::user()->type == config('constants.USER_TYPE.Administrador'))
+								<a class="btn btn-info" href="javascript:void(0);" onclick="bootbox.alert('No tiene permisos para editar')" style="float: right;">
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+									&nbsp; Editar información
+								</a>
+							@endif
 							<h4 class="mb-xlg">Informacion del usuario</h4>
 							<fieldset>
 								<div class="form-group">
@@ -152,13 +105,31 @@
 							</fieldset>
 							<hr class="dotted tall">
 						</div>
-					@endif
 					</div>
 					<div id="files" class="tab-pane">
-
-
+						@if(Auth::user()->type == config('constants.USER_TYPE.Administrador'))
+							<a class="btn btn-info" href="javascript:void(0);" onclick="bootbox.alert('No tiene permisos para editar')" style="float: right;">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+								&nbsp; Editar Archivos
+							</a>
+						@endif
 						<h4 class="mb-xlg">Archivos subidos</h4>
-
+							@foreach($required as $type => $name)
+								<div class="form-group">
+								@if(isset($documentation->{$type}))
+									
+									<label class="col-md-3 control-label">{{ $required[$type] }}</label>
+									<label class="col-md-8">
+										<a href="{{ route('users.get_doc', ['id' => $id, 'file' => $type]) }}" target="_blank" class="file_link">
+										{{ $documentation->{$type} }}
+										</a>
+									</label>
+								@else 
+									<label class="col-md-3 control-label">{{ $required[$type] }}</label>
+									<label class="col-md-8"><span class="file_link">No disponible</span>
+								@endif
+								</div>
+							@endforeach
 
 					</div>
 				</div>
@@ -252,7 +223,7 @@
 					$('<tr>').append('<td>' + response[i].date + '</td>')
 							 .append('<td>' + response[i].title + '</td>')
 							 .append('<td>' + response[i].credits + '</td>')
-							 .append('<td><a class="btn btn-info"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Ver certificado </a></td>' )
+							 .append('<td><a class="btn btn-info certificate"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Ver certificado </a></td>' )
 							 .appendTo(container);
 				}
 			});
@@ -260,6 +231,10 @@
 			$('#modal').modal();
 		});
 	});
+
+	function generateCertificate() {
+		//https://tcpdf.org/examples/example_051/
+	}
 </script>
 <script>
 if($('#image-input').length)

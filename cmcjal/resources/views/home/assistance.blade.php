@@ -206,7 +206,7 @@ $(document).ready(function()
 					$('.btn-delete').click(elimiarAsistencia);
 				}
 				else
-					alert('Este usuario ya se encuentra registrado');
+					bootbox.alert('Este usuario ya se encuentra registrado');
 			});
 
 		}
@@ -242,7 +242,7 @@ $(document).ready(function()
 			if($('.users-info table td').length == 0)
 				$('.users-info tbody').append('<td colspan="5" style="text-align: center;"> No se encontraron usuarios registrados </td>');
 
-			alert(response);
+			bootbox.alert(response);
 
 		});
 		

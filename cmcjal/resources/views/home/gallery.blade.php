@@ -5,7 +5,7 @@
 	<div class="custom-alert-padding">
 
 	</div>
-	@if(Auth::user()->type == "Administrador")
+	@if(Auth::user()->type == 1)
 		<section class="panel">
 			<header class="panel-heading">
 				<div class="panel-actions">
@@ -133,7 +133,7 @@
 
 			$.post(url, data, function(response)
 			{
-				alert(response);
+				bootbox.alert(response);
 			});
 		});
 	});

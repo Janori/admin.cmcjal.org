@@ -7,12 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
+
 use App\EventCalendar;
-use Validator;
+use App\Documentation;
+use App\User;
+
+
+use Auth;
 use File;
-use Session;
 use Redirect;
+use Session;
+use Validator;
 
 class UserController extends Controller
 {
@@ -27,7 +32,7 @@ class UserController extends Controller
 			'name' => $request->input('name'),
 			'lastname' => $request->input('lastname'),
 			'email' => $request->input('email'),
-			'password' => bcrypt($request->input('password')), 
+			'password' => $request->input('password'), 
 			'type' => $request->input('type'),
 			'status' => $request->input('status')
 		]);
@@ -35,10 +40,24 @@ class UserController extends Controller
 		return redirect('users');
 	}
 
-	public function show($id)
+	public function show($id = 0)
 	{
-		$user = \App\User::find($id);
-		return view('home.profile')->with('user', $user)->with('id', $id);
+		if($id == 0)
+			$id = Auth::user()->id;
+
+		$user 			= User::find($id);
+		$documentation 	= $user->documentation;
+
+		$required  = [
+			'acta_nacimiento' 	=> 'Acta de nacimiento',
+			'titulo' 			=> 'Título',
+			'cedula'			=> 'Cédula',
+		];
+
+		return view('user.show')->with('user', $user)
+								   ->with('id', $id)
+								   ->with('documentation', $documentation)
+								   ->with('required', $required);
 	}
 
 	public function edit($id)
@@ -51,6 +70,10 @@ class UserController extends Controller
 	{
 		$user = User::find($id);
 		$user->fill($request->all());
+
+		if(!$request->has('status'))
+			$user->status = 0;
+
 		$user->save();
 
 		return redirect('users');
@@ -93,6 +116,45 @@ class UserController extends Controller
 		}
 		else
 			return Redirect::to('/users/'.$user->id)->withInput()->withErrors($validator);
+	}
+
+	public function uploadDocumentation($id, Request $request) {
+		$user 			= User::find($id);
+		$documentation 	= new Documentation;
+		$documentation->user_id = $id;
+
+		$files = ['birth_certificate', 'certificate', 'document'];
+
+		foreach ($files as $type)
+		{
+			if(!$request->hasFile($type))
+				continue;
+
+			$file = $request->file($type);
+
+			// TODO Validate
+			if(true)
+			{
+				$destinationPath 	= storage_path() . '/docs/' . $id . '/';
+				$filename 			= $type . '.' . $file->getClientOriginalExtension();
+
+				$file->move($destinationPath, $filename);
+
+				$documentation->{$type} = 'docs/' . $id . '/'. $filename;
+
+			}
+		}
+
+		$documentation = $user->documentation()->save($documentation);
+
+		$user->documentation_id = $documentation->id;
+
+		return redirect()->route('users.show', ['id' => $id]);
+	}
+
+	public function getDocumentation($id, $file)
+	{
+		echo "Mostrando $file del $id";
 	}
 
 	public function assistance($id)

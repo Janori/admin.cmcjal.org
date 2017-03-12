@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-	@if(Auth::user()->type == "Administrador")
+	@if(Auth::user()->type == 1)
 	<div class="row">
 		<div class="col-md-3 col-md-offset-9" style="text-align: center; padding-bottom: 10px;">
 			<a class="btn btn-info" href="{{ route('events.form', ['id' => $event->id]) }}">

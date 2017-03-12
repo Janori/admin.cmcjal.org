@@ -8,7 +8,7 @@ Route::group(['middleware' => 'web'], function () {
 	// Home Controller routes.
 	Route::get('/', 'HomeController@index');
 	Route::get('users', 'HomeController@users');
-	Route::get('profile', 'HomeController@profile');
+	Route::get('profile/{id?}', 'UserController@show');
 	Route::get('assistance', 'HomeController@assistance');
 	Route::get('events', 'HomeController@events');
 	Route::get('files', 'HomeController@files');
@@ -22,11 +22,13 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('create', 'UserController@create')->name('users.create');
 		Route::post('/', 'UserController@store')->name('users.store');
 		Route::get('/{id}', 'UserController@show')->name('users.show');
-		Route::get('edit', 'UserController@edit')->name('users.edit');
+		Route::get('edit/{id}', 'UserController@edit')->name('users.edit');
 		Route::put('/{id}', 'UserController@update')->name('users.update');
 		Route::delete('/{id}', 'UserController@destroy')->name('users.destroy');
 		Route::post('picture/{id}', 'UserController@uploadPicture')->name('users.picture');
 		Route::post('assistance/{id}', 'UserController@assistance')->name('users.assistance');
+		Route::post('document/{id}', 'UserController@uploadDocumentation')->name('users.docs');
+		Route::get('document/{id}/{file}', 'UserController@getDocumentation')->name('users.get_doc');
 	});
 
 	// File Controller routes

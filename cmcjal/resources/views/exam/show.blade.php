@@ -83,7 +83,7 @@
 							$(this).parent()
 							.addClass('disabled');
 
-							alert('El tiempo se terminó');
+							bootbox.alert('El tiempo se terminó');
 							$('form').submit();
 						});
 		var time = (1000 * 60) * 5; // 5 minutes;

@@ -34,7 +34,7 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
-		@if(Auth::user()->type == "Administrador")
+		@if(Auth::user()->type == 1)
 		<div class="col-md-3">
 			<div class="box box-solid">
 			<div class="box-header with-border">
@@ -92,7 +92,7 @@
 		</div>
 		@endif
 		<!-- /.col -->
-		<div class="{{ Auth::user()->type == "Administrador" ? 'col-md-9' : 'col-md-10 col-md-offset-1' }}">
+		<div class="{{ Auth::user()->type == 1 ? 'col-md-9' : 'col-md-10 col-md-offset-1' }}">
 			<div class="box box-primary">
 			<div class="box-body no-padding">
 				<!-- THE CALENDAR -->

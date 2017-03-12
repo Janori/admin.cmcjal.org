@@ -73,7 +73,7 @@
 							</figure>
 							<div class="profile-info" data-lock-name="{{Auth::user()->name}}" data-lock-lastname="{{ Auth::user()->lastname }}" data-lock-email="{{Auth::user()->email}}" data-lock-token={{ csrf_token() }} >
 								<span class="name">{{Auth::user()->name}}</span>
-								<span class="role">{{Auth::user()->type}}</span>
+								<span class="role">{{Auth::user()->type == 1 ? 'Administrador' : 'Colegiado'}}</span>
 							</div>
 							<i class="fa custom-caret"></i>
 						</a>
@@ -120,7 +120,7 @@
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Panel de Control</span>
 										</a>
-											@if(Auth::user()->type == "Administrador")
+											@if(Auth::user()->type == 1)
 											
 											<a href="{{ url('/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Usuarios</span></a>
 											<a href="{{ url('/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> <span>Asistencia</span></a>
@@ -219,6 +219,7 @@
 		
 		{!! Html::script(asset('assets/vendor/pnotify/pnotify.custom.js')) !!}
 		<!-- Theme Base, Components and Settings -->
+		{!! Html::script(asset('assets/javascripts/bootbox.min.js')) !!}
 		{!! Html::script(asset('assets/javascripts/theme.js')) !!}
 		
 		<!-- Theme Custom -->
@@ -247,6 +248,7 @@
 			@if (session('locked', false))
 				LockScreen.show();
 			@endif
+			bootbox.setLocale('es');
 		});
 
 		

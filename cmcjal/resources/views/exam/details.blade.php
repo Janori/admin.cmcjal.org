@@ -263,7 +263,7 @@
 
 			$.post(url, data, function(response)
 			{
-				alert(response);
+				bootbox.alert(response);
 
 				row.fadeOut();
 				row.remove();

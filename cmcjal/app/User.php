@@ -24,13 +24,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function events()
-    {
+    public function setPasswordAttribute($value) {
+        if(!empty($value))
+            $this->attributes['password'] = \Hash::make($value);
+    }
+
+    public function events() {
         return $this->belongsToMany('App\EventCalendar', 'assistance', 'user_id', 'event_id');
     }
 
-    public function questions()
-    {
-        return $this->hasMany('App\Question', 'id', 'id');
+    public function documentation() {
+        return $this->hasOne('App\Documentation', 'id', 'documentation_id');
     }
 }

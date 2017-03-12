@@ -10,7 +10,7 @@
             @endforeach
         </div>
     </div>
-    @if(Auth::user()->type == "Administrador")
+    @if(Auth::user()->type == 1)
         <section class="panel">
             <header class="panel-heading">
                 <div class="panel-actions">
@@ -84,7 +84,7 @@
                                             <button class="btn btn-sm btn-default"><i class="fa fa-eye"></i></button>
                                         </a>
                                     @endif
-                                    @if(Auth::user()->type == "Administrador")
+                                    @if(Auth::user()->type == 1)
                                         <a onclick="return confirm('Estas seguro?')" href="{{ route('files.delete', ['filename' => $files[$i]['name']]) }}"><button class="btn btn-sm btn-default"><i class="fa fa-trash-o i-delete-file"></i></button></a>
                                     @endif
                                 </td>
