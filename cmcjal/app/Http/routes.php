@@ -86,4 +86,17 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin'], function () {
 	});
 });
 
+
+// Frontend section
 Route::get('/', 'FrontController@index');
+Route::get('_cmcjal', 'FrontController@cmcjal');
+Route::get('colegiados', 'FrontController@colegiados');
+Route::get('registro', 'FrontController@registro');
+Route::get('internacionales', 'FrontController@internacionales');
+Route::get('nacionales', 'FrontController@nacionales');
+Route::get('locales', 'FrontController@locales');
+Route::get('mensuales', 'FrontController@mensuales');
+Route::get('noticias', 'FrontController@noticias');
+Route::get('galeria', 'FrontController@galeria');
+Route::get('contacto', 'FrontController@contacto');
+Route::post('contacto/enviar', 'FrontController@submit');
