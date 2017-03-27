@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web', 'prefix' => 'admin'], function () {
 
 	// Authentication module routes
 	Route::auth();
@@ -17,8 +17,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::post('lock', 'HomeController@lock');
 
 	// User Controller routes
-	Route::group(['prefix' => 'users'], function()
-	{
+	Route::group(['prefix' => 'users'], function() {
 		Route::get('create', 'UserController@create')->name('users.create');
 		Route::post('/', 'UserController@store')->name('users.store');
 		Route::get('/{id}', 'UserController@show')->name('users.show');
@@ -79,4 +78,12 @@ Route::group(['middleware' => 'web'], function () {
 		Route::post('/{event_id}', 'ExamController@store')->name('exam.store');
 		Route::get('/{event_id}/test', 'ExamController@show')->name('exam.show');
 	});
+
+	Route::get('diploma/{user_id}/{event_id}', 'DiplomaController@show');
+
+	Route::get('/diploma', function() {
+		return view('diploma');
+	});
 });
+
+Route::get('/', 'FrontController@index');

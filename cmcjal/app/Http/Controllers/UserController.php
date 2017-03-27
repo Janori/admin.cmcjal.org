@@ -32,7 +32,7 @@ class UserController extends Controller
 			'name' => $request->input('name'),
 			'lastname' => $request->input('lastname'),
 			'email' => $request->input('email'),
-			'password' => $request->input('password'), 
+			'password' => $request->input('password'),
 			'type' => $request->input('type'),
 			'status' => $request->input('status')
 		]);
@@ -111,7 +111,7 @@ class UserController extends Controller
 
 			$user->image = $filename;
 			$user->save();
-			Session::flash('alert-success', 'Cambiaste tu imagen de perfil'); 
+			Session::flash('alert-success', 'Cambiaste tu imagen de perfil');
 			return Redirect::to('/users/'.$user->id);
 		}
 		else
@@ -165,7 +165,7 @@ class UserController extends Controller
 		foreach ($query as $q)
 			$values[] = $q->event_id;
 
-		$sub   = DB::table('events')->select('title', 'start', 'credits')->whereIn('id', $values)->get();
+		$sub   = DB::table('events')->select('id', 'title', 'start', 'credits')->whereIn('id', $values)->get();
 
 		$data = array();
 
@@ -174,7 +174,9 @@ class UserController extends Controller
 					'date' 			=> date('Y-m-d', strtotime($s->start)),
 					'title' 		=> $s->title,
 					'credits' 		=> $s->credits,
-					'certificate' 	=> null
+					'certificate' 	=> null,
+					'event_id'	=> $s->id,
+					'user_id' => $id,
 				);
 
 		return response()->json($data);

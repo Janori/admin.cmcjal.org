@@ -36,7 +36,7 @@
 						</div>
 						{{-- <div class="thumb-info-title">
 							<span class="thumb-info-inner small"><small>{{ $user->name . ' ' . $user->lastname }}</small></span>
-							
+
 						</div> --}}
 					</div>
 					@if ($id == Auth::user()->id)
@@ -117,14 +117,14 @@
 							@foreach($required as $type => $name)
 								<div class="form-group">
 								@if(isset($documentation->{$type}))
-									
+
 									<label class="col-md-3 control-label">{{ $required[$type] }}</label>
 									<label class="col-md-8">
 										<a href="{{ route('users.get_doc', ['id' => $id, 'file' => $type]) }}" target="_blank" class="file_link">
 										{{ $documentation->{$type} }}
 										</a>
 									</label>
-								@else 
+								@else
 									<label class="col-md-3 control-label">{{ $required[$type] }}</label>
 									<label class="col-md-8"><span class="file_link">No disponible</span>
 								@endif
@@ -144,7 +144,7 @@
 				@else
 					<li class="danger" style="text-align: center;"> Inactivo </li>
 				@endif
-				
+
 			</ul>
 
 			<h4 style=""> Creditos obtenidos: </h4>
@@ -220,10 +220,12 @@
 
 				for(var i = 0; i < response.length; i++)
 				{
+					var url = "{{ url('diploma', ['USER_ID', 'EVENT_ID'])}}";
+					url = url.replace('USER_ID', response[i].user_id).replace('EVENT_ID', response[i].event_id);
 					$('<tr>').append('<td>' + response[i].date + '</td>')
 							 .append('<td>' + response[i].title + '</td>')
 							 .append('<td>' + response[i].credits + '</td>')
-							 .append('<td><a class="btn btn-info certificate"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Ver certificado </a></td>' )
+							 .append('<td><a href="' + url + '" target="_blank" class="btn btn-info certificate"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Ver certificado </a></td>' )
 							 .appendTo(container);
 				}
 			});
