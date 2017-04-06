@@ -3,17 +3,17 @@
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Calendario / Examen del evento</h2>
-	
+
 		<div class="right-wrapper pull-right">
 			<ol class="breadcrumbs">
-				<li>	
-					<a href="{{ url('/') }}">
+				<li>
+					<a href="{{ route('admin.index') }}">
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
 				<li><span>Calendario / Examen del Evento</span></li>
 			</ol>
-	
+
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 		</div>
 	</header>
@@ -23,8 +23,8 @@
 
 	<div class="alert alert-info" role="alert">
 		<div class="countdown">
-			
-			Tiempo restante: 
+
+			Tiempo restante:
 			<span id="clock"></span>
 		</div>
 	</div>
@@ -56,7 +56,7 @@
 										<input type="radio" name="answer[{{ $number - 1 }}]" value="{{ $value }}">{{ $option }}
 									</label>
 								</div>
-							</div>	
+							</div>
 						@endforeach
 					</div>
 				@endforeach

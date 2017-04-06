@@ -3,17 +3,17 @@
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Asistencia</h2>
-	
+
 		<div class="right-wrapper pull-right">
 			<ol class="breadcrumbs">
-				<li>	
-					<a href="{{ url('/') }}">
+				<li>
+					<a href="{{ route('admin.index') }}">
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
 				<li><span>Asistencia</span></li>
 			</ol>
-	
+
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 		</div>
 	</header>
@@ -109,7 +109,7 @@ $(document).ready(function()
 			var id 		= ui.item.value;
 			var form 	= $('#event-info');
 			var url 	= '{{ route('assistance.events', ['id' => ':EVENT_ID']) }}';
-				url 	= url.replace(':EVENT_ID', id); 
+				url 	= url.replace(':EVENT_ID', id);
 			var data 	= {'_token' : '{{ csrf_token() }}'};
 
 			$(this).focusout();
@@ -139,7 +139,7 @@ $(document).ready(function()
 					{
 						for(var i = 0; i < response.length; i++)
 						{
-							var tr = $('<tr data-id="' + response[i].id + '">');	
+							var tr = $('<tr data-id="' + response[i].id + '">');
 							for(var a in response[i])
 							{
 								tr.append('<td>' + response[i][a] + '</td>');
@@ -170,7 +170,7 @@ $(document).ready(function()
 		{
 			if(!confirm('¿Está seguro que desea registrar al usuario ' + ui.item.label + '?'))
 				return;
-			
+
 			var url = '{{ route('assistance.store') }}';
 			var data = {
 				event_id 	: $('#event_id').val(),
@@ -190,7 +190,7 @@ $(document).ready(function()
 				if(response.length)
 				{
 					var container = $('.users-info tbody')
-					
+
 					if($('.users-info table td').length == 1)
 						container.empty();
 
@@ -245,7 +245,7 @@ $(document).ready(function()
 			bootbox.alert(response);
 
 		});
-		
+
 	}
 });
 </script>

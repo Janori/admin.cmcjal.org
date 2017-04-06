@@ -12,7 +12,7 @@ class FileController extends Controller
 {
     public static function formatBytes($size, $precision = 2) {
 		$base = log($size, 1024);
-		$suffixes = array('b', 'Kb', 'Mb', 'Gb', 'Tb');   
+		$suffixes = array('b', 'Kb', 'Mb', 'Gb', 'Tb');
 		return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
 	}
 
@@ -27,18 +27,18 @@ class FileController extends Controller
 		}
 		$file->move(public_path('files'), $filename);
 
-		Session::flash('alert-success', 'Archivo subido correctamente: '.$filename); 
-		return redirect('files');
+		Session::flash('alert-success', 'Archivo subido correctamente: '.$filename);
+		return redirect('admin/files');
 	}
 
 	public function delete($filename) {
 		if(Storage::disk('files')->exists($filename)) {
 			Storage::disk('files')->delete($filename);
-			Session::flash('alert-success', 'Archivo elimado correctamente: '.$filename); 
-			return redirect('files');
+			Session::flash('alert-success', 'Archivo elimado correctamente: '.$filename);
+			return redirect('admin/files');
 		} else {
-			Session::flash('alert-danger', 'Este archivo no se puede eliminar por que no existe: '.$filename); 
-			return redirect('files');
+			Session::flash('alert-danger', 'Este archivo no se puede eliminar por que no existe: '.$filename);
+			return redirect('admin/files');
 		}
 	}
 

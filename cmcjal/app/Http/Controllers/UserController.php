@@ -37,7 +37,7 @@ class UserController extends Controller
 			'status' => $request->input('status')
 		]);
 
-		return redirect('users');
+		return redirect('admin/users');
 	}
 
 	public function show($id = 0)
@@ -76,7 +76,7 @@ class UserController extends Controller
 
 		$user->save();
 
-		return redirect('users');
+		return redirect('admin/users');
 	}
 
 	public function destroy($id)
@@ -112,10 +112,10 @@ class UserController extends Controller
 			$user->image = $filename;
 			$user->save();
 			Session::flash('alert-success', 'Cambiaste tu imagen de perfil');
-			return Redirect::to('/users/'.$user->id);
+			return Redirect::to('/admin/users/'.$user->id);
 		}
 		else
-			return Redirect::to('/users/'.$user->id)->withInput()->withErrors($validator);
+			return Redirect::to('/admin/users/'.$user->id)->withInput()->withErrors($validator);
 	}
 
 	public function uploadDocumentation($id, Request $request) {

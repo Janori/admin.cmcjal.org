@@ -42,7 +42,7 @@
 					<th>Acciones</th>
 				</thead>
 				@foreach($thumbnails as $thumbnail)
-				
+
 				<tr data-id={{ $thumbnail->id }}>
 					<td>{{ $thumbnail->id }}</td>
 					<td>{{ $thumbnail->name }}</td>
@@ -93,7 +93,7 @@
 	<div class="right-wrapper pull-right">
 		<ol class="breadcrumbs">
 			<li>
-				<a href="{{ url('/') }}">
+				<a href="{{ route('admin.index') }}">
 					<i class="fa fa-home"></i>
 				</a>
 			</li>
@@ -124,7 +124,7 @@
 			var id 		= row.data('id');
 			var form 	= $('#form-delete');
 
-			var url 	= form.attr('action').replace(':USER_ID', id); 
+			var url 	= form.attr('action').replace(':USER_ID', id);
 			var data 	= form.serialize();
 
 			row.fadeOut();

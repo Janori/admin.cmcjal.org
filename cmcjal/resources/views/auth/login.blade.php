@@ -53,11 +53,11 @@
                                 <label>Correo</label>
                                 <div class="input-group input-group-icon">
                                     <input type="email" class="form-control input-lg" name="email" value="{{ old('email') }}">
-                                    @if ($errors->has('email'))
+                                    {{-- @if ($errors->has('email'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif --}}
                                     <span class="input-group-addon">
                                         <span class="icon icon-lg">
                                             <i class="fa fa-user"></i>
@@ -73,11 +73,11 @@
                                 </div>
                                 <div class="input-group input-group-icon">
                                     <input type="password" class="form-control input-lg" name="password">
-                                    @if ($errors->has('password'))
+                                    {{-- @if ($errors->has('password'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif --}}
                                     <span class="input-group-addon">
                                         <span class="icon icon-lg">
                                             <i class="fa fa-lock"></i>
@@ -127,13 +127,13 @@
         <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         <script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
         <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-        
+
         <!-- Theme Base, Components and Settings -->
         <script src="assets/javascripts/theme.js"></script>
-        
+
         <!-- Theme Custom -->
         <script src="assets/javascripts/theme.custom.js"></script>
-        
+
         <!-- Theme Initialization Files -->
         <script src="assets/javascripts/theme.init.js"></script>
 

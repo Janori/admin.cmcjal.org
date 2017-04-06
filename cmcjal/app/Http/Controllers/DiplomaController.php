@@ -31,6 +31,7 @@ class DiplomaController extends Controller
         // Otherwise, generate it.
         $user   = User::find($user_id);
         $event  = EventCalendar::find($event_id);
+
         PDF::setOptions(['dpi' => 150, 'isRemoteEnabled' => true]);
         $pdf = PDF::loadView('diploma', [
           'user'  => $user,

@@ -3,17 +3,17 @@
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Calendario / Detalles del evento</h2>
-	
+
 		<div class="right-wrapper pull-right">
 			<ol class="breadcrumbs">
-				<li>	
-					<a href="{{ url('/') }}">
+				<li>
+					<a href="{{ route('admin.index') }}">
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
 				<li><span>Calendario / Detalles</span></li>
 			</ol>
-	
+
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 		</div>
 	</header>
@@ -44,22 +44,22 @@
 				<div class="form-group">
 					{!! Form::label('titulo', 'Titulo del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
-						{!! Form::label('titulo', $event->title)!!}	
+						{!! Form::label('titulo', $event->title)!!}
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('start', 'Fecha de Inicio:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
-						{!! Form::label('start', $event->start)!!}	
+						{!! Form::label('start', $event->start)!!}
 					</div>
 				</div>
 
-				@if($event->end != '0000-00-00 00:00:00') 
+				@if($event->end != '0000-00-00 00:00:00')
 					<div class="form-group">
 						{!! Form::label('end', 'Fecha de Inicio:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 						<div class="col-sm-7">
-							{!! Form::label('end', $event->end)!!}	
+							{!! Form::label('end', $event->end)!!}
 						</div>
 					</div>
 				@endif
@@ -67,12 +67,12 @@
 				<div class="form-group">
 					{!! Form::label('all_day', 'Todo el día:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
-						{!! Form::label('all_day', ($event->all_day ? 'Sí' : 'No'))!!}	
+						{!! Form::label('all_day', ($event->all_day ? 'Sí' : 'No'))!!}
 					</div>
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('color', 'Color del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}	
+					{!! Form::label('color', 'Color del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 
 					<div class="col-sm-7">
 						<p style="font-size: 1.2em;	">Color seleccionado: &nbsp;
@@ -93,36 +93,36 @@
 				<div class="form-group">
 					{!! Form::label('place', 'Lugar:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
-						{!! Form::label('place', ($event->place ? $event->place : 'No disponible')) !!}	
+						{!! Form::label('place', ($event->place ? $event->place : 'No disponible')) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('address', 'Dirección:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
-						{!! Form::label('address', ($event->address ? $event->address : 'No disponible')) !!}	
+						{!! Form::label('address', ($event->address ? $event->address : 'No disponible')) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('speaker', 'Ponente:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
-						{!! Form::label('speaker', ($event->speaker ? $event->speaker : 'No disponible')) !!}	
+						{!! Form::label('speaker', ($event->speaker ? $event->speaker : 'No disponible')) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('institution', 'Institución:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
-						{!! Form::label('institution', ($event->institution ? $event->institution : 'No disponible')) !!}	
+						{!! Form::label('institution', ($event->institution ? $event->institution : 'No disponible')) !!}
 					</div>
 				</div>
 
 				<legend></legend>
 
-					
+
 				<div class="form-group">
-					{!! Form::label('exam', 'Examen:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}	
+					{!! Form::label('exam', 'Examen:', ['class' => 'control-label col-sm-2  col-sm-offset-2']) !!}
 					<div class="col-sm-7">
 						@if($event->exam != NULL)
 							{!! Form::label('exam', '"' . $event->exam . '"') !!} &nbsp;
@@ -147,7 +147,7 @@
 			user_id		: {{  Auth::user()->id }},
 			event_id	: {{  $event->id }}
 		};
-		
+
 		var url = '{{ route('assistance.check') }}';
 
 		$.get(url, data, function(response)

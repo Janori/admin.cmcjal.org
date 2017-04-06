@@ -3,17 +3,17 @@
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Calendario / Examen del evento</h2>
-	
+
 		<div class="right-wrapper pull-right">
 			<ol class="breadcrumbs">
-				<li>	
-					<a href="{{ url('/') }}">
+				<li>
+					<a href="{{ route('admin.index') }}">
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
 				<li><span>Calendario / Examen del Evento</span></li>
 			</ol>
-	
+
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 		</div>
 	</header>
@@ -53,9 +53,8 @@
 								<th>Acciones</th>
 							</thead>
 							<tbody>
-								
 							@foreach($question as $question)
-						
+
 								<tr data-id="{{ $question->id }}">
 									<td>{{ $question->title }}</div>
 									<td class="col-md-4">
@@ -95,7 +94,7 @@
 							<label for="title" class="col-sm-2 control-label">Título </label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="title" placeholder="Título de la pregunta"/>
-							</div>	
+							</div>
 						</div>
 						<legend></legend>
 						@foreach(['A', 'B', 'C', 'D'] as $option)
@@ -103,7 +102,7 @@
 							<label for="awnser_{{ $option }}" class="col-sm-2 control-label">Opción {{ $option }}</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control question-option" placeholder="Escribe la opción"/>
-							</div>	
+							</div>
 						</div>
 						@endforeach
 						<div class="form-group">
@@ -159,13 +158,13 @@
 					$('.number-question').html(i);
 					break;
 				}
-			
+
 			$('#type').val('edit');
 
 			var id 		= $(this).parents('tr').data('id');
 			var form 	= $('#event-info');
 			var url 	= '{{ route('question.show', ['id' => ':EVENT_ID']) }}';
-				url 	= url.replace(':EVENT_ID', id); 
+				url 	= url.replace(':EVENT_ID', id);
 			var data 	= {'_token' : '{{ csrf_token() }}'};
 
 			$.get(url, data, function(response)
@@ -196,7 +195,7 @@
 			var data = {
 				event_id	: $('#event_id').val(),
 				title 		: $('#title').val(),
-				options		: JSON.stringify(options),		
+				options		: JSON.stringify(options),
 				correct 	: $('#correct').val()
 			};
 
@@ -223,7 +222,7 @@
          						  .appendTo(container);
 
 					});
-					
+
 					break;
 
 				case 'edit':
@@ -258,7 +257,7 @@
 			var id 		= $(this).parents('.row').data('id');
 			var form 	= $('#event-info');
 			var url 	= '{{ route('question.delete', ['id' => ':EVENT_ID']) }}';
-				url 	= url.replace(':EVENT_ID', id); 
+				url 	= url.replace(':EVENT_ID', id);
 			var data 	= {'_token' : '{{ csrf_token() }}', '_method' : 'DELETE'};
 
 			$.post(url, data, function(response)

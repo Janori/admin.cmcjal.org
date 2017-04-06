@@ -3,17 +3,17 @@
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Calendario / Detalles del evento</h2>
-	
+
 		<div class="right-wrapper pull-right">
 			<ol class="breadcrumbs">
-				<li>	
-					<a href="{{ url('/') }}">
+				<li>
+					<a href="{{ route('admin.index') }}">
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
 				<li><span>Calendario / Detalles</span></li>
 			</ol>
-	
+
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 		</div>
 	</header>
@@ -37,12 +37,12 @@
 				<div class="form-group">
 					{!! Form::label('titulo', 'Titulo del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					<div class="col-sm-7">
-						{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el titulo para este evento']) !!}	
+						{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el titulo para este evento']) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('color', 'Color del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}	
+					{!! Form::label('color', 'Color del evento:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					{!! Form::hidden('color') !!}
 					<div class="box-body">
 						<ul class="fc-color-picker" id="color-chooser">
@@ -76,35 +76,35 @@
 				<div class="form-group">
 					{!! Form::label('place', 'Lugar:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					<div class="col-sm-7">
-						{!! Form::text('place', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el lugar para este evento']) !!}	
+						{!! Form::text('place', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el lugar para este evento']) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('address', 'Dirección:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					<div class="col-sm-7">
-						{!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => 'Ingresa la dirección para este evento']) !!}	
+						{!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => 'Ingresa la dirección para este evento']) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('speaker', 'Ponente:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					<div class="col-sm-7">
-						{!! Form::text('speaker', null, ['class' => 'form-control', 'placeholder' => 'Ingresa nombre del ponente']) !!}	
+						{!! Form::text('speaker', null, ['class' => 'form-control', 'placeholder' => 'Ingresa nombre del ponente']) !!}
 					</div>
 				</div>
 
 				<div class="form-group">
 					{!! Form::label('institution', 'Institución:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					<div class="col-sm-7">
-						{!! Form::text('institution', null, ['class' => 'form-control', 'placeholder' => 'Ingresa la institución del ponente']) !!}	
+						{!! Form::text('institution', null, ['class' => 'form-control', 'placeholder' => 'Ingresa la institución del ponente']) !!}
 					</div>
 				</div>
 
 				<legend></legend>
-	
+
 				<div class="form-group">
-					{!! Form::label('exam', 'Examen:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}	
+					{!! Form::label('exam', 'Examen:', ['class' => 'control-label col-sm-2  col-sm-offset-1']) !!}
 					<div class="box-body">
 						@if($event->exam == NULL)
 							<a href="{{ route('exam.create', ['event_id' => $event->id]) }}" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Agregar Examen</a>

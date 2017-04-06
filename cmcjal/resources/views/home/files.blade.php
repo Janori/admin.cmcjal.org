@@ -68,7 +68,7 @@
                                         <i class="fa fa-file-excel-o i-file-manager"></i>
                                     @elseif($files[$i]['extension'] == "ppt" || $files[$i]['extension'] == "pptx")
                                         <i class="fa fa-file-powerpoint-o i-file-manager"></i>
-                                    @else 
+                                    @else
                                        <i class="fa fa-file-o i-file-manager"></i>
                                     @endif
                                     <a href="{{ route('files.download', ['filename' => $files[$i]['name']]) }}">{{ $files[$i]['name'] }}</a>
@@ -103,7 +103,7 @@
     <!-- Modal for see the images -->
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">              
+        <div class="modal-content">
           <div class="modal-body">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <p class="text-preview">
@@ -124,7 +124,7 @@
     <div class="right-wrapper pull-right">
         <ol class="breadcrumbs">
             <li>
-                <a href="{{ url('/') }}">
+                <a href="{{ route('admin.index') }}">
                     <i class="fa fa-home"></i>
                 </a>
             </li>
@@ -162,7 +162,7 @@
             $('.image-preview').hide();
 
             if($(this).data('extension') == "txt")
-            {            
+            {
                 $.ajax({
                     url: '{{ route('files.preview') }}',
                     type: 'POST',
@@ -179,7 +179,7 @@
                     }));
 
                     $('<p class="content-preview">' + response.content + '</p>').appendTo('.text-preview');
-                    $('#modal').modal('show'); 
+                    $('#modal').modal('show');
 
                 })
             }
@@ -187,9 +187,9 @@
             {
                 $('.image-preview').show();
                 $('.image-preview').attr('src', data.src);
-                $('#modal').modal('show'); 
+                $('#modal').modal('show');
             }
-            
+
         });
     });
 </script>

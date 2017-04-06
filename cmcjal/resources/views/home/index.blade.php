@@ -17,7 +17,7 @@
     <div class="right-wrapper pull-right">
         <ol class="breadcrumbs">
             <li>
-                <a href="{{ url('/') }}">
+                <a href="{{ route('admin.index') }}">
                     <i class="fa fa-home"></i>
                 </a>
             </li>

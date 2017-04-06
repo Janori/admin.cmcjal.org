@@ -15,12 +15,12 @@ class ExamController extends Controller
 {
 	public function create($event_id)
 	{
-		$questions 	= EventCalendar::find($event_id)->questions()->get()->toArray();
+		$questions 	= EventCalendar::find($event_id)->questions;
 		$exam 		= EventCalendar::find($event_id)->exam;
 
 		return view('exam.details', [
 				'event_id' 	=> $event_id,
-				'question' 	=> $questions,
+				'questions' 	=> $questions,
 				'exam' 		=> $exam
 			]);
 	}
@@ -44,8 +44,8 @@ class ExamController extends Controller
 		$questions 	= $event->questions()->get();
 
 		return view('exam.show', [
-			'title' => $title, 
-			'questions' => $questions, 
+			'title' => $title,
+			'questions' => $questions,
 			'number' => 1,
 			'event_id' => $event_id]);
 	}
@@ -69,11 +69,11 @@ class ExamController extends Controller
 		$G = ['A', 'B', 'C', 'D'];
 		$hits = 0;
 		$total = count($answer);
-		$min_qualification = 70; 
+		$min_qualification = 70;
 
 		for($i = 0; $i < count($answer); $i++)
 			$hits += $G[$answer[$i + 1]] == $correct[$i];
-				
+
 		$qualification = ($hits * 100) / $total;
 
 		if($qualification > $min_qualification) {
@@ -92,7 +92,7 @@ class ExamController extends Controller
 		}
 		else
 		{
-			// return w/ error. 
+			// return w/ error.
 			return redirect()->route('events.show', ['id' => $event_id]);
 		}
 	}

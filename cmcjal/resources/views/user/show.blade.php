@@ -193,7 +193,7 @@
 	<div class="right-wrapper pull-right">
 		<ol class="breadcrumbs">
 			<li>
-				<a href="{{ url('/') }}">
+				<a href="{{ route('admin.index') }}">
 					<i class="fa fa-home"></i>
 				</a>
 			</li>
@@ -220,7 +220,7 @@
 
 				for(var i = 0; i < response.length; i++)
 				{
-					var url = "{{ url('diploma', ['USER_ID', 'EVENT_ID'])}}";
+					var url = "{{ url('admin/diploma', ['USER_ID', 'EVENT_ID'])}}";
 					url = url.replace('USER_ID', response[i].user_id).replace('EVENT_ID', response[i].event_id);
 					$('<tr>').append('<td>' + response[i].date + '</td>')
 							 .append('<td>' + response[i].title + '</td>')

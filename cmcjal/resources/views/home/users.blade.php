@@ -3,17 +3,17 @@
 @section('pageHeader')
 	<header class="page-header">
 		<h2>Usuarios</h2>
-	
+
 		<div class="right-wrapper pull-right">
 			<ol class="breadcrumbs">
-				<li>	
-					<a href="{{ url('/') }}">
+				<li>
+					<a href="{{ route('admin.index') }}">
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
 				<li><span>Usuarios</span></li>
 			</ol>
-	
+
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 		</div>
 	</header>
@@ -23,7 +23,7 @@
 	@if(Auth::user()->type == 1)
 	<div class="row">
 		<div class="col-md-3 col-md-offset-9" style="text-align: center; padding-bottom: 10px;">
-			<a class="btn btn-info" href="{{ url('users/create') }}">
+			<a class="btn btn-info" href="{{ route('users.create') }}">
 				<i class="fa fa-plus" aria-hidden="true"></i>
 				&nbsp; Agrergar usuario
 			</a>
@@ -96,7 +96,7 @@
 			var id 		= row.data('id');
 			var form 	= $('#form-delete');
 
-			var url 	= form.attr('action').replace(':USER_ID', id); 
+			var url 	= form.attr('action').replace(':USER_ID', id);
 			var data 	= form.serialize();
 
 			row.fadeOut();

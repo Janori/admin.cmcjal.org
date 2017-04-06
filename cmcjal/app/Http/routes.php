@@ -1,12 +1,16 @@
 <?php
 
+// Authentication module routes
+Route::group(['middleware' => 'web'], function() {
+
+	Route::auth();
+});
+
 Route::group(['middleware' => 'web', 'prefix' => 'admin'], function () {
 
-	// Authentication module routes
-	Route::auth();
 
 	// Home Controller routes.
-	Route::get('/', 'HomeController@index');
+	Route::get('/', 'HomeController@index')->name('admin.index');
 	Route::get('users', 'HomeController@users');
 	Route::get('profile/{id?}', 'UserController@show');
 	Route::get('assistance', 'HomeController@assistance');

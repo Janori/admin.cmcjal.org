@@ -58,14 +58,14 @@
 						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 					</div>
 				</div>
-			
+
 				<!-- start: search & user box -->
 				<div class="header-right">
-			
 
-			
+
+
 					<span class="separator"></span>
-			
+
 					<div id="userbox" class="userbox">
 						<a href="#" data-toggle="dropdown">
 							<figure class="profile-picture">
@@ -77,12 +77,12 @@
 							</div>
 							<i class="fa custom-caret"></i>
 						</a>
-			
+
 						<div class="dropdown-menu">
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="{{ url('profile') }}"><i class="fa fa-user"></i> Mi Perfil</a>
+									<a role="menuitem" tabindex="-1" href="{{ url('admin/profile') }}"><i class="fa fa-user"></i> Mi Perfil</a>
 								</li>
 								<li>
 									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Bloquear Pantalla</a>
@@ -101,7 +101,7 @@
 			<div class="inner-wrapper">
 				<!-- start: sidebar -->
 				<aside id="sidebar-left" class="sidebar-left">
-				
+
 					<div class="sidebar-header">
 						<div class="sidebar-title">
 							Navegación
@@ -110,32 +110,32 @@
 							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 						</div>
 					</div>
-				
+
 					<div class="nano">
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li class="nav-active">
-										<a href="{{ url('/') }}">
+										<a href="{{ route('admin.index') }}">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Panel de Control</span>
 										</a>
 											@if(Auth::user()->type == 1)
-											
-											<a href="{{ url('/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Usuarios</span></a>
-											<a href="{{ url('/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> <span>Asistencia</span></a>
-											
-											@endif
-											<a href="{{ url('/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendario</span></a>
-											<a href="{{ url('/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> <span>Articulos</span> Destacados</a>
 
-											<a href="{{ url('/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> <span>Galeria</span></a>                                    </li>
+											<a href="{{ url('admin/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Usuarios</span></a>
+											<a href="{{ url('admin/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> <span>Asistencia</span></a>
+
+											@endif
+											<a href="{{ url('admin/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendario</span></a>
+											<a href="{{ url('admin/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> <span>Articulos</span> Destacados</a>
+
+											<a href="{{ url('admin/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> <span>Galeria</span></a>                                    </li>
 								</ul>
 							</nav>
-						</div> 
-				
+						</div>
+
 					</div>
-				
+
 				</aside>
 				<!-- end: sidebar -->
 
@@ -148,7 +148,7 @@
 						<div class="col-md-6 col-lg-12 col-xl-6">
 							<section class="panel">
 								<div class="panel-body">
-									
+
 								</div>
 							</section>
 						</div>
@@ -163,9 +163,9 @@
 						<a href="#" class="mobile-close visible-xs">
 							Collapse <i class="fa fa-chevron-right"></i>
 						</a>
-			
+
 						<div class="sidebar-right-wrapper">
-			
+
 							<div class="sidebar-widget widget-calendar">
 								<h6>Calendario de eventos</h6>
 								<hr>
@@ -173,7 +173,7 @@
 								<div class="fc-mini">
 								</div>
 								<a href="{{ url('/events') }}"><button class="btn btn-xs btn-default btn-block"> Ver calendario completo </button></a>
-								<hr>                                
+								<hr>
 							</div>
 						</div>
 					</div>
@@ -189,7 +189,7 @@
 		{!! Html::script(asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')) !!}
 		{!! Html::script(asset('assets/vendor/magnific-popup/magnific-popup.js')) !!}
 		{!! Html::script(asset('assets/vendor/jquery-placeholder/jquery.placeholder.js')) !!}
-		
+
 		<!-- Specific Page Vendor -->
 		{!! Html::script(asset('assets/vendor/jquery-ui/js/jquery-ui-1.12.0.js')) !!}
 		{!! Html::script(asset('assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js')) !!}
@@ -216,15 +216,15 @@
 		{!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js')) !!}
 		{!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js')) !!}
 		{!! Html::script(asset('assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js')) !!}
-		
+
 		{!! Html::script(asset('assets/vendor/pnotify/pnotify.custom.js')) !!}
 		<!-- Theme Base, Components and Settings -->
 		{!! Html::script(asset('assets/javascripts/bootbox.min.js')) !!}
 		{!! Html::script(asset('assets/javascripts/theme.js')) !!}
-		
+
 		<!-- Theme Custom -->
 		{!! Html::script(asset('assets/javascripts/theme.custom.js')) !!}
-		
+
 		<!-- Theme Initialization Files -->
 		{!! Html::script(asset('assets/javascripts/theme.init.js')) !!}
 
@@ -251,7 +251,7 @@
 			bootbox.setLocale('es');
 		});
 
-		
+
 		</script>
 	</body>
 </html>

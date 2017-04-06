@@ -3,17 +3,17 @@
 @section('content')
 	<header class="page-header">
 		<h2>Calendario</h2>
-	
+
 		<div class="right-wrapper pull-right">
 			<ol class="breadcrumbs">
 				<li>
-					<a href="{{ url('/') }}">
+					<a href="{{ route('admin.index') }}">
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
 				<li><span>Calendario</span></li>
 			</ol>
-	
+
 			<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 		</div>
 	</header>
@@ -118,7 +118,7 @@
 	<div class="right-wrapper pull-right">
 		<ol class="breadcrumbs">
 			<li>
-				<a href="{{ url('/') }}">
+				<a href="{{ route('admin.index') }}">
 					<i class="fa fa-home"></i>
 				</a>
 			</li>
@@ -157,7 +157,7 @@
 		/* initialize the calendar
 		 -----------------------------------------------------------------*/
 		//Date for the calendar events (dummy data)
-		
+
 		/*var todayDate = moment().startOf('day');
 		var YM = todayDate.format('YYYY-MM');
 		var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
@@ -205,7 +205,7 @@
 					},
 					error: function() {
 						console.log("Error al crear evento");
-					}		
+					}
 				});
 			},
 			eventResize: function(event, delta, revertFunc) {
@@ -257,7 +257,7 @@
 
 				crsfToken = document.getElementsByName("_token")[0].value;
 
-				$.ajax({  
+				$.ajax({
 					url: '{{ route('events.update') }}',
 					data: data,
 					type: "POST",

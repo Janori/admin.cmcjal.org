@@ -27,7 +27,7 @@ class ThumbnailController extends Controller
         $thumbnail->image   = $file->getClientOriginalName();
         $thumbnail->save();
 
-        return redirect('gallery');
+        return redirect('admin/gallery');
     }
 
     public function destroy($id)
