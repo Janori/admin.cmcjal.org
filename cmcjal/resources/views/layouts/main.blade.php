@@ -118,8 +118,10 @@
 									<li class="nav-active">
 										<a href="{{ route('admin.index') }}">
 											<i class="fa fa-home" aria-hidden="true"></i>
-											<span>Panel de Control</span>
+											<span>Inicio</span>
 										</a>
+										<a href="{{ url('admin/profile') }}"><i class="fa fa-user" aria-hidden="true"></i> <span>Mi perfil</span></a>
+										<br>
 											@if(Auth::user()->type == 1)
 
 											<a href="{{ url('admin/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Usuarios</span></a>
@@ -129,7 +131,7 @@
 											<a href="{{ url('admin/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendario</span></a>
 											<a href="{{ url('admin/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> <span>Articulos</span> Destacados</a>
 
-											<a href="{{ url('admin/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> <span>Galeria</span></a>                                    </li>
+											<a href="{{ url('admin/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> <span>Galeria</span></a></li>
 								</ul>
 							</nav>
 						</div>

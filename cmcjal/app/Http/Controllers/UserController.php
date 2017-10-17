@@ -54,10 +54,14 @@ class UserController extends Controller
 			'cedula'			=> 'Cédula',
 		];
 
+		$credits = DB::table('assistance')->select(DB::raw("SUM(credits) as creditos"))->where('user_id', $id)->get();
+		$credits = $credits[0]->creditos;
+
 		return view('user.show')->with('user', $user)
 								   ->with('id', $id)
 								   ->with('documentation', $documentation)
-								   ->with('required', $required);
+								   ->with('required', $required)
+								   ->with('credits', $credits);
 	}
 
 	public function edit($id)

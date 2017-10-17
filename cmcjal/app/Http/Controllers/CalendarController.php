@@ -19,7 +19,7 @@ class CalendarController extends Controller
 		$allDay = EventCalendar::all()->lists('all_day');
 		$color 	= EventCalendar::all()->lists('color');
 		$count 	= count($id); //contamos los ids obtenidos para saber el numero exacto de eventos
- 
+
 		//hacemos un ciclo para anidar los valores obtenidos a nuestro array principal $data
 		for($i = 0; $i < $count; $i++)
 		{
@@ -52,7 +52,7 @@ class CalendarController extends Controller
 			}
 		}
 
-		json_encode($data); //convertimos el array principal $data a un objeto Json 
+		json_encode($data); //convertimos el array principal $data a un objeto Json
 		return $data; //para luego retornarlo y estar listo para consumirlo
 	}
 
@@ -85,11 +85,11 @@ class CalendarController extends Controller
 		$start 	= $request->input('start');
 		$end 	= $request->input('end');
 		$color 	= $request->input('color');
-		$allDay = $request->input('allDay') == "true"; 
+		$allDay = $request->input('allDay') == "true";
 
 		//Insertando evento a base de datos
 		$event = new EventCalendar();
-		
+
 		$event->title 	= $title;
 		$event->start 	= $start;
 		$event->end 	= $end;
@@ -107,7 +107,7 @@ class CalendarController extends Controller
 		$start 	= $request->input('start');
 		$end 	= $request->input('end');
 		$color 	= $request->input('color');
-		$allDay = $request->input('allDay') == "true"; 
+		$allDay = $request->input('allDay') == "true";
 
 		$event = EventCalendar::find($id);
 
@@ -118,12 +118,12 @@ class CalendarController extends Controller
 		$event->color = $color;
 
 		$event->save();
-	}	
+	}
 
 	public function delete($id){
 		//Valor id recibidos via ajax
 		EventCalendar::destroy($id);
 
-		return redirect('events');
+		return redirect('admin/events');
 	}
 }

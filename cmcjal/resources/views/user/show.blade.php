@@ -148,10 +148,10 @@
 			</ul>
 
 			<h4 style=""> Creditos obtenidos: </h4>
-			@if($user->credits > 0)
-				<a href="#" class="credits-user">{{ $user->credits }}</a>
+			@if($credits > 0)
+				<a href="#" class="credits-user">{{ $credits }}</a>
 			@else
-				<span class="credits-user">{{ $user->credits }}</span>
+				<span class="credits-user">{{ $credits }}</span>
 			@endif
 	</div>
 	<!-- Modal -->
