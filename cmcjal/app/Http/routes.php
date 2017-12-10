@@ -88,6 +88,16 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin'], function () {
 	Route::get('/diploma', function() {
 		return view('diploma');
 	});
+
+	Route::group(['prefix' => 'noticias'], function() {
+		Route::get('/', 'NewsController@index')->name('news.index');
+		Route::post('/', 'NewsController@store')->name('news.store');
+		Route::get('crear', 'NewsController@create')->name('news.create');
+		Route::get('{id}/editar', 'NewsController@edit')->name('news.edit');
+		Route::get('{id}', 'NewsController@show')->name('news.show');
+		Route::put('{id}', 'NewsController@update')->name('news.update');
+		Route::delete('{id}', 'NewsController@destroy')->name('news.destroy');
+	});
 });
 
 

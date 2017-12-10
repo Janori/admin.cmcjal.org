@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use Illuminate\Support\Facades\Mail;
 
+use App\News;
+
 
 class FrontController extends Controller
 {
@@ -24,27 +26,48 @@ class FrontController extends Controller
     }
 
     public function registro() {
-      return redirect('/'); // The register section isn´t builded yet.
+      return redirect('/'); // The register section isn´t built yet.
     }
 
     public function internacionales() {
-      return view('front.internacionales');
+        $news = News::where('category', 'INTERNACIONALES')->get();
+        $title = 'INTERNACIONALES';
+        $subtitle = 'Conecta tu conocimiento alrrededor del mundo';
+        setlocale(LC_ALL, "es_MX");
+        return view('front.internacionales', compact('news', 'title', 'subtitle'));
     }
 
     public function nacionales() {
-      return view('front.nacionales');
+        $news = News::where('category', 'NACIONALES')->get();
+        $title = 'NACIONALES';
+        $subtitle = 'Conecta tu conocimiento alrrededor del mundo';
+        setlocale(LC_ALL, "es_MX");
+        return view('front.internacionales', compact('news', 'title', 'subtitle'));
     }
 
     public function locales() {
-      return view('front.locales');
+        $news = News::where('category', 'LOCALES')->get();
+        $title = 'LOCALES';
+        $subtitle = 'Participa en los eventos cercanos a ti';
+        setlocale(LC_ALL, "es_MX");
+        return view('front.internacionales', compact('news', 'title', 'subtitle'));
     }
 
     public function mensuales() {
-      return view('front.mensuales');
+        $news = News::where('category', 'SESIONES MENSUALES')->get();
+        $title = 'SESIONES MENSUALES';
+        $subtitle = 'En constante preparación';
+        setlocale(LC_ALL, "es_MX");
+        return view('front.internacionales', compact('news', 'title', 'subtitle'));
     }
 
     public function noticias() {
-      return view('front.noticias');
+        $news = News::where('category', 'NOTICIAS')->get();
+        $title = 'NOTICIAS';
+
+        $subtitle = 'Conecta tu conocimiento alrrededor del mundo';
+        setlocale(LC_ALL, "es_MX");
+        return view('front.internacionales', compact('news', 'title', 'subtitle'));
     }
 
     public function contacto() {

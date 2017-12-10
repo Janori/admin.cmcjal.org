@@ -41,8 +41,10 @@
 		{!! Html::script(asset('assets/vendor/modernizr/modernizr.js')) !!}
 
 		<!-- AdminLTE Skins -->
-		{{!! Html::style(asset('assets/vendor/admin-lte/AdminLTE.min.css')) !!}
-		{{!! Html::style(asset('assets/stylesheets/custom.css')) !!}
+		{!! Html::style(asset('assets/vendor/admin-lte/AdminLTE.min.css')) !!}
+		{!! Html::style(asset('assets/stylesheets/custom.css')) !!}
+
+		{!! Html::script(asset('assets/ckeditor/ckeditor.js')) !!}
 
 	</head>
 	<body>
@@ -122,16 +124,20 @@
 										</a>
 										<a href="{{ url('admin/profile') }}"><i class="fa fa-user" aria-hidden="true"></i> <span>Mi perfil</span></a>
 										<br>
-											@if(Auth::user()->type == 1)
+											@if(Auth::user()->type != 3)
+												@if(Auth::user()->type == 1)
 
-											<a href="{{ url('admin/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Usuarios</span></a>
-											<a href="{{ url('admin/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> <span>Asistencia</span></a>
+												<a href="{{ url('admin/users') }}"><i class="fa fa-user-md" aria-hidden="true"></i> <span>Usuarios</span></a>
+												<a href="{{ url('admin/assistance') }}"><i class="fa fa-check-square" aria-hidden="true"></i> <span>Asistencia</span></a>
 
+												@endif
+												<a href="{{ url('admin/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendario</span></a>
+												<a href="{{ url('admin/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> <span>Articulos</span> Destacados</a>
+
+												<a href="{{ url('admin/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> <span>Galeria</span></a></li>
+											@else
+												<a href="{{ route('news.index') }}"><i class="fa fa-star" aria-hidden="true"></i> <span>Noticias</span></a></li>
 											@endif
-											<a href="{{ url('admin/events') }}"><i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendario</span></a>
-											<a href="{{ url('admin/files') }}"><i class="fa fa-folder-open" aria-hidden="true"></i> <span>Articulos</span> Destacados</a>
-
-											<a href="{{ url('admin/gallery') }}"><i class="fa fa-picture-o" aria-hidden="true"></i> <span>Galeria</span></a></li>
 								</ul>
 							</nav>
 						</div>

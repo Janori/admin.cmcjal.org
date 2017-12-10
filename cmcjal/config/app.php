@@ -162,6 +162,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        JeroenNoten\LaravelCkEditor\ServiceProvider::class,
 
     ],
 

@@ -71,7 +71,7 @@
 
 				@endforeach
 			</table>
-			{!! $users->render() !!}
+			{{-- {!! $users->render() !!} --}}
 		</div>
 	</section>
 {!! Form::open(['route' => ['users.destroy', ':USER_ID'], 'method' => 'DELETE', 'id' => 'form-delete']) !!}

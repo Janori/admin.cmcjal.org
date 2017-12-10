@@ -42,13 +42,13 @@ class HomeController extends Controller
 
 	public function users()
 	{
-		
-		$users = User::paginate(10);
+
+		$users = User::where('type', '<>', 3)->get();
 		return view('home.users', compact('users'));
 	}
 
 
-	
+
 	public function events() {
 		$user = Auth::user();
 		return view('home.calendar')->with('user', $user);
@@ -58,11 +58,11 @@ class HomeController extends Controller
 	{
 		return view('home.assistance');
 	}
-	
+
 	public function files() {
 
 		$files_array = array();
-		
+
 		$files =  Storage::disk('files')->files();
 		  foreach ($files as $key => $file) {
 			$files_array[$key]['name'] = $file;
